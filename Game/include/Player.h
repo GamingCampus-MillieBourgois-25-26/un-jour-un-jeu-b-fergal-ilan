@@ -8,23 +8,29 @@ public:
 	void Update(const float _delta_time) override
 	{
 		Maths::Vector2<float> position = GetOwner()->GetPosition();
+		Maths::Vector2u window_size = Engine::GetInstance()->GetModuleManager()->GetModule<WindowModule>()->GetSize();
 
-		if (InputModule::GetKey(sf::Keyboard::Key::D))
-		{
-			position.x += speed * _delta_time;
-		}
-		if (InputModule::GetKey(sf::Keyboard::Key::Q))
-		{
+		if (position.x > window_size.x || position.y > window_size.y){
 			position.x -= speed * _delta_time;
-		}
+	}
+		else{
+			if (InputModule::GetKey(sf::Keyboard::Key::D))
+			{
+				position.x += speed * _delta_time;
+			}
+			if (InputModule::GetKey(sf::Keyboard::Key::Q))
+			{
+				position.x -= speed * _delta_time;
+			}
 
-		if (InputModule::GetKey(sf::Keyboard::Key::Z))
-		{
-			position.y -= speed * _delta_time;
-		}
-		if (InputModule::GetKey(sf::Keyboard::Key::S))
-		{
-			position.y += speed * _delta_time;
+			if (InputModule::GetKey(sf::Keyboard::Key::Z))
+			{
+				position.y -= speed * _delta_time;
+			}
+			if (InputModule::GetKey(sf::Keyboard::Key::S))
+			{
+				position.y += speed * _delta_time;
+			}
 		}
 
 		GetOwner()->SetPosition(position);
