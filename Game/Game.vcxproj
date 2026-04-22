@@ -98,8 +98,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Enemy.h" />
     <ClInclude Include="include\Player.h" />
-    <ClInclude Include="Scenes\BulletH.h" />
+    <ClInclude Include="Scenes\BulletHScene.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
   </ItemGroup>
   <ItemGroup>

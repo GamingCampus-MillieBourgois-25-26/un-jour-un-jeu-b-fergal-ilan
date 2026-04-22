@@ -35,5 +35,5 @@ public:
 		}
 	}
 
-	float speed = 100.0f;
+	float speed = 500.0f;
 };

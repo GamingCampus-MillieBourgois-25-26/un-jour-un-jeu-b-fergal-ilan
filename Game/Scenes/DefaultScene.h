@@ -22,9 +22,11 @@ public:
 		GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
 		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
-		Texture* texture = assets_module->LoadAsset<Texture>("logo.png");
+		Texture* logo = assets_module->LoadAsset<Texture>("logo.png");
+		Texture* arrow = assets_module->LoadAsset<Texture>("paint_arrow_down.png");
 
-		player->CreateComponent<SpriteRenderer>(texture);
+		player->CreateComponent<SpriteRenderer>(logo);
+		enemy->CreateComponent<SpriteRenderer>(arrow);
 	}
 
 	GameObject* CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color)

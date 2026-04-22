@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Player.h"
+#include "Enemy.h"
 #include "Assets/Texture.h"
 #include "Components/RectangleShapeRenderer.h"
 #include "Components/SpriteRenderer.h"
@@ -18,8 +19,10 @@ public:
 		player->CreateComponent<Player>();
 
 		GameObject* enemy = CreateDummyGameObject("Enemy", 400.f, sf::Color::Blue);
+		enemy->CreateComponent<Enemy>();
 
 		GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
+		enemy2->CreateComponent<Enemy>();
 
 		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
 		Texture* texture = assets_module->LoadAsset<Texture>("logo.png");
@@ -33,8 +36,8 @@ public:
 		game_object->SetPosition(Maths::Vector2f(_position, _position));
 
 		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
-		square_collider->SetWidth(20.f);
-		square_collider->SetHeight(20.f);
+		square_collider->SetWidth(200.f);
+		square_collider->SetHeight(200.f);
 
 		RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
 		shape_renderer->SetColor(_color);
