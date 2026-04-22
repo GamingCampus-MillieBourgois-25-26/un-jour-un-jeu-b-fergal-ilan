@@ -10,10 +10,15 @@ public:
 		Maths::Vector2<float> position = GetOwner()->GetPosition();
 		Maths::Vector2u window_size = Engine::GetInstance()->GetModuleManager()->GetModule<WindowModule>()->GetSize();
 
-		if (position.x > window_size.x || position.y > window_size.y){
+		if (position.x > window_size.x)
 			position.x -= speed * _delta_time;
-	}
-		else{
+		if (position.x < window_size.x - window_size.x)
+			position.x += speed * _delta_time;
+		if (position.y > window_size.y)
+			position.y -= speed * _delta_time;
+		if (position.y < window_size.y - window_size.y)
+			position.y += speed * _delta_time;
+		
 			if (InputModule::GetKey(sf::Keyboard::Key::D))
 			{
 				position.x += speed * _delta_time;
@@ -31,7 +36,6 @@ public:
 			{
 				position.y += speed * _delta_time;
 			}
-		}
 
 		GetOwner()->SetPosition(position);
 
