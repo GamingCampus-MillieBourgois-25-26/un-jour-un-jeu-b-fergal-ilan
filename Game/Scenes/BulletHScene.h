@@ -18,11 +18,14 @@ public:
 		GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Red);
 		player->CreateComponent<Player>();
 
+		srand(time(NULL));
+		SpawnSide side = static_cast<SpawnSide>(rand() % 4);
 		GameObject* enemy = CreateDummyGameObject("Enemy", 400.f, sf::Color::Blue);
-		enemy->CreateComponent<Enemy>();
+		enemy->CreateComponent<Enemy>(side);
 
+		side = static_cast<SpawnSide>(rand() % 4);
 		GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
-		enemy2->CreateComponent<Enemy>();
+		enemy2->CreateComponent<Enemy>(side);
 
 		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
 		Texture* texture = assets_module->LoadAsset<Texture>("logo.png");
