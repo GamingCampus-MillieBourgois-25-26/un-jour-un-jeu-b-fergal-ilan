@@ -19,6 +19,7 @@ class BulletHScene final : public Scene
 public:
 	BulletHScene() : Scene("BulletHScene")
 	{
+		gBulletPool.Init(this, 1000);
 		GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Red);
 		player->CreateComponent<Player>();
 
@@ -32,9 +33,9 @@ public:
 		enemy2->CreateComponent<Enemy>(side);
 
 		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
-		Texture* texture = assets_module->LoadAsset<Texture>("logo.png");
+		/*Texture* texture = assets_module->LoadAsset<Texture>("logo.png");*/
 
-		player->CreateComponent<SpriteRenderer>(texture);
+		/*player->CreateComponent<SpriteRenderer>(texture);*/
 	}
 
 	GameObject* CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color)

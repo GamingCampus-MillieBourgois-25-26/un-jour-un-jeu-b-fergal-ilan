@@ -21,7 +21,7 @@ public:
 
             //AJOUT VISUEL (IMPORTANT)
             auto renderer = obj->CreateComponent<RectangleShapeRenderer>();
-            renderer->SetSize(Maths::Vector2f(50.f, 50.f));
+            renderer->SetSize(Maths::Vector2f(5.f, 5.f));
             renderer->SetColor(sf::Color::Red);
 
             b->active = false;
