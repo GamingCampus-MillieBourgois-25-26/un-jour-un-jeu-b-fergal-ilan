@@ -31,7 +31,7 @@ public:
 
         if (length < 5.f)
         {
-            // impact
+            // impact tue les jen
             m_target->MarkForDeletion();
             owner->MarkForDeletion();
             return;
