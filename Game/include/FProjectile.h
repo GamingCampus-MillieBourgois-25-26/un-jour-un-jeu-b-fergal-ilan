@@ -42,6 +42,7 @@ public:
         owner->SetPosition(pos + dir * m_speed * dt);
     }
 
+
 private:
     GameObject* m_target = nullptr;
     float m_speed = 300.f;

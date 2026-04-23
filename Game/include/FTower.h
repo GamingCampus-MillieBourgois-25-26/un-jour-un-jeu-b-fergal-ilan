@@ -73,5 +73,9 @@ private:
 
         auto* projComp = projectile->CreateComponent<Projectile>();
         projComp->SetTarget(target);
+
+        auto* renderer = projectile->CreateComponent<RectangleShapeRenderer>();
+        renderer->SetSize({ 5.f, 5.f });
+        renderer->SetColor(sf::Color::White);
     }
 };

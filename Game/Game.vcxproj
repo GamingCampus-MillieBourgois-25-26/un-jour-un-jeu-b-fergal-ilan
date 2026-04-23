@@ -111,6 +111,7 @@
     <ClInclude Include="include\FProjectile.h" />
     <ClInclude Include="include\FTower.h" />
     <ClInclude Include="include\Patterns.h" />
+    <ClInclude Include="include\TowerPlacement.h" />
     <ClInclude Include="Scenes\Fbuller_hell.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />

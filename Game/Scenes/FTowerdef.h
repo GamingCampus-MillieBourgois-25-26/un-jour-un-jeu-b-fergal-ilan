@@ -12,28 +12,28 @@
 #include "FEnemyMovement.h"
 #include "FTower.h"
 #include "EnemyWave.h"
+#include "TowerPlacement.h"
+#include <iostream>
 #include <algorithm>
 
 class FTowerDef final : public Scene
 {
 public:
-	FTowerDef() : Scene("F_TowerDefScene")//, m_wave(5, 0.5f) //<--- avoir is marche ou pas un seul a la foix
+	int m_currentWave = 0;
+	FTowerDef() : Scene("F_TowerDefScene")
 	{
+		
 		/*GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Cyan);
 		player->CreateComponent<FPlayer>();*/
 		GameObject* tower = CreateDummyGameObject("Tower", 300.f, sf::Color::Red);
 		tower->CreateComponent<Tower>();
+		SpawnEnemy();
 
-		GameObject* enemy = CreateDummyGameObject("Enemy", 0.f, sf::Color::Blue);
-		m_enemies.push_back(enemy);
-		enemy->SetPosition(path[0]);
-		EnemyMovement* movement = enemy->CreateComponent<EnemyMovement>();
-		movement->SetPath(path);
 		/*GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Yellow);*/
-		
-		m_wave = EnemyWave(5, 0.5f);  //<--- avoir is marche ou pas  un seul a la foix
-	
+		GameObject* manager = CreateGameObject("TowerPlacement");
+		manager->CreateComponent<TowerPlacement>();
 
+		m_wave = EnemyWave(5, 0.5f);  
 		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
 		/*Texture* texture = assets_module->LoadAsset<Texture>("logo.png");
 
@@ -54,27 +54,42 @@ public:
 
 		return game_object;
 	}
+	void NextWave()
+	{
+		m_currentWave++;
+
+		int enemyCount = 5 + m_currentWave * 2;
+
+		m_wave.Reset(enemyCount);
+	}
 
 	std::vector<GameObject*>& GetEnemies()
 	{
 		return m_enemies;
 	}
-	void Update(float dt)
+	void Update(float _delta_time)
 	{
-		Scene::Update(dt);
-
-		m_wave.Update(dt);
+		Scene::Update(_delta_time);
+		
+		m_wave.Update(_delta_time);
 
 		if (m_wave.CanSpawn())
 		{
+			std::cout << "CAN SPAWN" << std::endl;
 			SpawnEnemy();
-			m_wave.OnEnemySpawned();
+			m_wave.ConsumeSpawn();
+		}
+
+		if (m_wave.IsFinished() && m_enemies.size() == 0)
+		{
+			NextWave();
 		}
 
 		m_enemies.erase(
 			std::remove_if(m_enemies.begin(), m_enemies.end(),
 				[](GameObject* e)
 				{
+					std::cout << "ERASE CHECK" << std::endl;
 					return e == nullptr || e->IsMarkedForDeletion();
 				}),
 			m_enemies.end()
@@ -102,3 +117,9 @@ private:
 	std::vector<GameObject*> m_enemies;
 	EnemyWave m_wave;
 };
+ /* idee
+	money system
+	HP ennemis
+	targeting intelligent
+	placement de tours
+	boss waves*/

@@ -5,14 +5,14 @@
 class EnemyWave
 {
 public:
-    EnemyWave(int enemyCount = 5, float spawnDelay = 0.5f)
-        : m_enemyCount(enemyCount), m_spawnDelay(spawnDelay)
+    EnemyWave(int count = 5, float delay = 0.5f)
+        : m_enemyCount(count), m_spawnDelay(delay)
     {
     }
 
-    void Reset(int enemyCount)
+    void Reset(int count)
     {
-        m_enemyCount = enemyCount;
+        m_enemyCount = count;
         m_spawned = 0;
         m_timer = 0.f;
         m_finished = false;
@@ -20,41 +20,32 @@ public:
 
     void Update(float dt)
     {
+        
         if (m_finished)
             return;
 
         m_timer += dt;
-
-        if (m_timer >= m_spawnDelay)
-        {
-            m_timer = 0.f;
-            m_spawned++;
-        }
-
-        if (m_spawned >= m_enemyCount)
-        {
-            m_finished = true;
-        }
     }
 
     bool CanSpawn() const
     {
-        return !m_finished && m_timer == 0.f && m_spawned < m_enemyCount;
+        return !m_finished &&
+            m_spawned < m_enemyCount &&
+            m_timer >= m_spawnDelay;
+    }
+
+    void ConsumeSpawn()
+    {
+        m_timer -= m_spawnDelay; // IMPORTANT (pas reset)
+        m_spawned++;
+
+        if (m_spawned >= m_enemyCount)
+            m_finished = true;
     }
 
     bool IsFinished() const
     {
         return m_finished;
-    }
-
-    void OnEnemySpawned()
-    {
-        m_spawned++;
-    }
-
-    int GetRemaining() const
-    {
-        return m_enemyCount - m_spawned;
     }
 
 private:
