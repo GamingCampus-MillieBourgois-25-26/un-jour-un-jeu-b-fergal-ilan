@@ -98,10 +98,12 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Bullet.h" />
     <ClInclude Include="include\Enemy.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="Scenes\BulletHScene.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
+    <ClInclude Include="Scenes\TowerDef.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
