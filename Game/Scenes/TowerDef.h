@@ -11,30 +11,29 @@
 #include "Core/Scene.h"
 #include "Modules/AssetsModule.h"
 
-std::vector<Maths::Vector2f> path = {
-	{0.f, 100.f},
-	{300.f, 100.f},
-	{300.f, 300.f},
-	{600.f, 300.f}
-};
-
 class TowerDefScene final : public Scene
 {
 public:
 	TowerDefScene() : Scene("TowerDefScene")
 	{
+		// 1. Générer la map visuellement
+		SpawnMap(this);
+
+		roadPath = MapComponent::BuildRoadPath();
+
 		GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Red);
 		player->CreateComponent<Player>();
 
 		GameObject* enemy = CreateGameObject("Enemy");
 
-		auto renderer = enemy->CreateComponent<RectangleShapeRenderer>();
-		renderer->SetSize({ 40.f, 40.f });
-		renderer->SetColor(sf::Color::Red);
+		RectangleShapeRenderer* r = enemy->CreateComponent<RectangleShapeRenderer>();
+		r->SetSize({ TILE_SIZE, TILE_SIZE });
+		r->SetColor(sf::Color::Red);
 
-		enemy->CreateComponent<EnemyMovement>(&path);
+		enemy->CreateComponent<EnemyMovement>(&roadPath);
 
 		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
+		
 	}
 
 	GameObject* CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color)
@@ -52,4 +51,8 @@ public:
 
 		return game_object;
 	}
+
+private:
+	std::vector<Maths::Vector2f> roadPath;
 };
+

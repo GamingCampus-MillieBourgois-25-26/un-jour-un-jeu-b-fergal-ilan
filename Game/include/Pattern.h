@@ -3,6 +3,8 @@
 #include "Core/GameObject.h"
 #include "Bullet.h"
 #include "BulletPool.h"
+#include "Player.h"
+#include "Core/Component.h"
 
 namespace Patterns
 {
