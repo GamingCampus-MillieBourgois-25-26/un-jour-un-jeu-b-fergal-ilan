@@ -97,6 +97,7 @@
   <ItemGroup>
     <ClCompile Include="include\BulletPool.cpp" />
     <ClCompile Include="include\Demo\Tile.cpp" />
+    <ClCompile Include="include\Demo\TileSpawner.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
   </ItemGroup>
@@ -115,6 +116,7 @@
     <ClInclude Include="Scenes\DefaultScene.h" />
     <ClInclude Include="include\Demo\Player.h" />
     <ClInclude Include="include\Demo\Tile.h" />
+    <ClInclude Include="include\Demo\TileSpawner.h" />
     <ClInclude Include="Scenes\Demo\DemoScene.h" />
     <ClInclude Include="Scenes\FTowerdef.h" />
   </ItemGroup>
