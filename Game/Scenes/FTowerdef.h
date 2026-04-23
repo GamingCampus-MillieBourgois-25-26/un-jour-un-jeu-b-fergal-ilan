@@ -1,9 +1,6 @@
 #pragma once
 
 #include "FPlayer.h"
-#include "Bullet.h"
-#include "EnemyShooter.h"
-#include "BulletPool.h"
 #include "Assets/Texture.h"
 #include "Components/RectangleShapeRenderer.h"
 #include "Components/SpriteRenderer.h"
@@ -12,20 +9,25 @@
 #include "Core/GameObject.h"
 #include "Core/Scene.h"
 #include "Modules/AssetsModule.h"
-class Bullet;
-class EnemyShooter;
-class FBHene final : public Scene
+#include "FEnemyMovement.h"
+#include "FTower.h"
+#include <algorithm>
+
+class FTowerDef final : public Scene
 {
 public:
-	FBHene() : Scene("F_BULLET_HELLScene")
+	FTowerDef() : Scene("F_TowerDefScene")
 	{
-		gBulletPool.Init(this, 100);
-		GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Cyan);
-		player->CreateComponent<FPlayer>();
+		/*GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Cyan);
+		player->CreateComponent<FPlayer>();*/
+		GameObject* tower = CreateDummyGameObject("Tower", 300.f, sf::Color::Red);
+		tower->CreateComponent<Tower>();
 
-		GameObject* enemy = CreateDummyGameObject("Enemy", 100.f, sf::Color::Blue);
-        enemy->CreateComponent<EnemyShooter>();
-
+		GameObject* enemy = CreateDummyGameObject("Enemy", 0.f, sf::Color::Blue);
+		m_enemies.push_back(enemy);
+		enemy->SetPosition(path[0]);
+		EnemyMovement* movement = enemy->CreateComponent<EnemyMovement>();
+		movement->SetPath(path);
 		/*GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Yellow);*/
 
 		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
@@ -48,11 +50,32 @@ public:
 
 		return game_object;
 	}
+	std::vector<GameObject*>& GetEnemies()
+	{
+		return m_enemies;
+	}
+	void Update(float dt)
+	{
+		Scene::Update(dt);
+
+		m_enemies.erase(
+			std::remove_if(m_enemies.begin(), m_enemies.end(),
+				[](GameObject* e)
+				{
+					return e == nullptr || e->IsMarkedForDeletion();
+				}),
+			m_enemies.end()
+		);
+	}
+	const std::vector<GameObject*>& GetEnemies() const { return m_enemies; }
+	std::vector<Maths::Vector2f> path = {
+	{0.f, 100.f},
+	{300.f, 100.f},
+	{300.f, 300.f},
+	{600.f, 300.f}
+	};
+private:
+	std::vector<GameObject*> m_enemies;
 };
-//idee : 
-// ajouter des boss avec plusieurs phases(HP  patterns)
-//faire un système de score
-// ajouter un dash pour le joueur(très bullet hell)
-// améliorer les patterns(spirale plus complexe, aim, random)
-// optimiser les bullets(pooling pour 1000 + projectiles sans lag)
-// ajouter des effets(flash hit, slow motion, screen shake)*/
+
+//ou un système de tours qui tirent
