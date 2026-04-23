@@ -74,5 +74,8 @@
     <ClInclude Include="include\FProjectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\EnemyWave.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

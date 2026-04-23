@@ -11,12 +11,13 @@
 #include "Modules/AssetsModule.h"
 #include "FEnemyMovement.h"
 #include "FTower.h"
+#include "EnemyWave.h"
 #include <algorithm>
 
 class FTowerDef final : public Scene
 {
 public:
-	FTowerDef() : Scene("F_TowerDefScene")
+	FTowerDef() : Scene("F_TowerDefScene")//, m_wave(5, 0.5f) //<--- avoir is marche ou pas un seul a la foix
 	{
 		/*GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Cyan);
 		player->CreateComponent<FPlayer>();*/
@@ -29,6 +30,9 @@ public:
 		EnemyMovement* movement = enemy->CreateComponent<EnemyMovement>();
 		movement->SetPath(path);
 		/*GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Yellow);*/
+		
+		m_wave = EnemyWave(5, 0.5f);  //<--- avoir is marche ou pas  un seul a la foix
+	
 
 		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
 		/*Texture* texture = assets_module->LoadAsset<Texture>("logo.png");
@@ -50,6 +54,7 @@ public:
 
 		return game_object;
 	}
+
 	std::vector<GameObject*>& GetEnemies()
 	{
 		return m_enemies;
@@ -57,6 +62,14 @@ public:
 	void Update(float dt)
 	{
 		Scene::Update(dt);
+
+		m_wave.Update(dt);
+
+		if (m_wave.CanSpawn())
+		{
+			SpawnEnemy();
+			m_wave.OnEnemySpawned();
+		}
 
 		m_enemies.erase(
 			std::remove_if(m_enemies.begin(), m_enemies.end(),
@@ -67,6 +80,17 @@ public:
 			m_enemies.end()
 		);
 	}
+	void SpawnEnemy()
+	{
+		GameObject* enemy = CreateDummyGameObject("Enemy", 0.f, sf::Color::Blue);
+
+		enemy->SetPosition(path[0]);
+
+		auto* move = enemy->CreateComponent<EnemyMovement>();
+		move->SetPath(path);
+
+		m_enemies.push_back(enemy);
+	}
 	const std::vector<GameObject*>& GetEnemies() const { return m_enemies; }
 	std::vector<Maths::Vector2f> path = {
 	{0.f, 100.f},
@@ -76,6 +100,5 @@ public:
 	};
 private:
 	std::vector<GameObject*> m_enemies;
+	EnemyWave m_wave;
 };
-
-//ou un système de tours qui tirent
