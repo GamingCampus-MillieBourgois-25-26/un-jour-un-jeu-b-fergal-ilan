@@ -95,17 +95,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\BulletPool.cpp" />
     <ClCompile Include="include\Demo\Tile.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Bullet.h" />
+    <ClInclude Include="include\BulletPool.h" />
     <ClInclude Include="include\Enemy.h" />
+    <ClInclude Include="include\Pattern.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="Scenes\BulletHScene.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
     <ClInclude Include="Scenes\TowerDef.h" />
+    <ClInclude Include="Scenes\Tdefense.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">

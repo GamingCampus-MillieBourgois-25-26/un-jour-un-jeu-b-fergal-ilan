@@ -9,7 +9,11 @@
 #include "Core/GameObject.h"
 #include "Core/Scene.h"
 #include "Modules/AssetsModule.h"
+#include "Bullet.h"
+#include "BulletPool.h"
 
+class Bullet;
+class Enemy;
 class BulletHScene final : public Scene
 {
 public:

@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "Core/Component.h"
 #include "InputModule.h"
+#include "Bullet.h"
+#include "Pattern.h"
 
 enum class SpawnSide
 {
@@ -17,6 +19,9 @@ public:
     Enemy(SpawnSide side) : spawnSide(side) {}
     Enemy() = default;
     ~Enemy() override = default;
+
+    int phase = 0;
+    float timer = 0.f;
 
     void Start() override
     {
@@ -58,6 +63,23 @@ public:
         position.y += velocity.y * _delta_time;
 
         Maths::Vector2u window_size = Engine::GetInstance()->GetModuleManager()->GetModule<WindowModule>()->GetSize();
+
+        timer += _delta_time;
+
+        if (timer > 1.f + (phase * 0.2f))
+        {
+            if (phase == 0)
+                Patterns::ShootCircle(GetOwner());
+            else if (phase == 1)
+                Patterns::ShootSpiral(GetOwner());
+            else if (phase == 2)
+                Patterns::ShootWave(GetOwner());
+            else
+                Patterns::ShootLaser(GetOwner());
+
+            timer = 0.f;
+            phase = (phase + 1) % 4;
+        }
 
         // Taille de l'objet 
         const float size = 20.f;
