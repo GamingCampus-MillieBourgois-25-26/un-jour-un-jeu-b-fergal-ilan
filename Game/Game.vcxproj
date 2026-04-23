@@ -95,7 +95,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\Demo\Tile.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Bullet.h" />
