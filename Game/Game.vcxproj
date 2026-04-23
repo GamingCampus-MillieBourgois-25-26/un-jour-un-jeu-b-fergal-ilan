@@ -109,7 +109,7 @@
     <ClInclude Include="Scenes\BulletHScene.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
     <ClInclude Include="Scenes\TowerDef.h" />
-    <ClInclude Include="Scenes\Tdefense.h" />
+    <ClInclude Include="include\Tenemy.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">

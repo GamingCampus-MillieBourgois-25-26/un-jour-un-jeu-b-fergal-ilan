@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Tenemy.h"
 #include "Player.h"
 #include "Assets/Texture.h"
 #include "Components/RectangleShapeRenderer.h"
@@ -9,10 +10,10 @@
 #include "Core/Scene.h"
 #include "Modules/AssetsModule.h"
 
-class DefaultScene final : public Scene
+class TowerDefScene final : public Scene
 {
 public:
-	DefaultScene() : Scene("DefaultScene")
+	TowerDefScene() : Scene("TowerDefScene")
 	{
 		GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Red);
 		player->CreateComponent<Player>();
@@ -22,11 +23,6 @@ public:
 		GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
 		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
-		Texture* logo = assets_module->LoadAsset<Texture>("logo.png");
-		Texture* arrow = assets_module->LoadAsset<Texture>("paint_arrow_down.png");
-
-		player->CreateComponent<SpriteRenderer>(logo);
-		enemy->CreateComponent<SpriteRenderer>(arrow);
 	}
 
 	GameObject* CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color)

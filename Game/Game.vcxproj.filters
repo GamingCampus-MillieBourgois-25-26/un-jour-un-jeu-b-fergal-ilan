@@ -53,7 +53,7 @@
     <ClInclude Include="include\Pattern.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\Tdefense.h">
+    <ClInclude Include="include\Tenemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
