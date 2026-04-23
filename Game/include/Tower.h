@@ -8,7 +8,7 @@
 class Player : public Component
 {
 private:
-	
+	int Pv = 3;
 
 public:
 	

@@ -59,5 +59,8 @@
     <ClInclude Include="include\Tower.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
