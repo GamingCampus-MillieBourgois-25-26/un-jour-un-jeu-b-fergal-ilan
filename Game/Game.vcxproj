@@ -114,6 +114,7 @@
     <ClInclude Include="include\FEnemyMovement.h" />
     <ClInclude Include="include\FPlayer.h" />
     <ClInclude Include="include\FProjectile.h" />
+    <ClInclude Include="include\FScoreDisplayComponent.h" />
     <ClInclude Include="include\FTower.h" />
     <ClInclude Include="include\Patterns.h" />
     <ClInclude Include="include\ShopComponent.h" />

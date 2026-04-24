@@ -12,6 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include "FClickableComponent.h"
 #include "ShopComponent.h"
+#include "FScoreDisplayComponent.h"
 
 class FClick final : public Scene
 {
@@ -30,8 +31,15 @@ public:
 		player->CreateComponent<FPlayer>();*/
 		// text
 		GameObject* terxt = CreateGameObject("score");
-		TextRenderer* text = terxt->CreateComponent<TextRenderer>("score : ");
+
+		TextRenderer* text = terxt->CreateComponent<TextRenderer>("score : 0");
 		text->SetColor(sf::Color::White);
+
+		//  AJOUT IMPORTANT
+		terxt->CreateComponent<ScoreDisplayComponent>(&score);
+		/*GameObject* terxt = CreateGameObject("score");
+		TextRenderer* text = terxt->CreateComponent<TextRenderer>("score : ");
+		text->SetColor(sf::Color::White);*/
 		GameObject* enemy = CreateDummyGameObject("Enemy", 250.f, sf::Color::Blue);
 		enemy->CreateComponent<ClickableComponent>(&score, &clickPower);
 
