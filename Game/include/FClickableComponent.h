@@ -10,10 +10,13 @@ private:
 
 public:
     int* score = nullptr;
-    ClickableComponent(int* _score)
-        : score(_score)
+    int* clickPower = nullptr;
+
+    ClickableComponent(int* _score, int* _clickPower)
+        : score(_score), clickPower(_clickPower)
     {
     }
+    
 
     void Update(float dt) override
     {
@@ -38,7 +41,7 @@ public:
 
         if (isPressed && !wasPressed && inside)
         {
-            (*score)++;
+            (*score) += (*clickPower);
             std::cout << "Score: " << *score << std::endl;
         }
 

@@ -8,7 +8,9 @@
 #include "Core/GameObject.h"
 #include "Core/Scene.h"
 #include "Modules/AssetsModule.h"
+#include <SFML/Graphics.hpp>
 #include "FClickableComponent.h"
+#include "ShopComponent.h"
 
 class FClick final : public Scene
 {
@@ -22,14 +24,10 @@ public:
 		player->CreateComponent<FPlayer>();*/
 
 		GameObject* enemy = CreateDummyGameObject("Enemy", 250.f, sf::Color::Blue);
-		enemy->CreateComponent<ClickableComponent>(&score);
+		enemy->CreateComponent<ClickableComponent>(&score, &clickPower);
 
-		/*GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Yellow);*/
-
-		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
-		/*Texture* texture = assets_module->LoadAsset<Texture>("logo.png");
-
-		player->CreateComponent<SpriteRenderer>(texture);*/
+		GameObject* shop = CreateDummyGameObject("Shop", 400.f, sf::Color::Green);
+		shop->CreateComponent<ShopComponent>(&score, &clickPower, &upgradeCost);
 	}
 	GameObject* CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color)
 	{
