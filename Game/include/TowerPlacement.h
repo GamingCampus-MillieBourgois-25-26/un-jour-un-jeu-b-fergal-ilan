@@ -35,7 +35,15 @@ public:
 
             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
             {
-                PlaceTower();
+                if (m_canClick)
+                {
+                    PlaceTower();
+                    m_canClick = false;
+                }
+            }
+            else
+            {
+                m_canClick = true;
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
@@ -81,6 +89,10 @@ public:
         GameObject* tower = scene->CreateGameObject("Tower");
         tower->SetPosition(m_preview->GetPosition());
 
+        auto* renderer = tower->CreateComponent<RectangleShapeRenderer>();
+        renderer->SetSize({ 40.f, 40.f });
+        renderer->SetColor(sf::Color::Red);
+
         tower->CreateComponent<Tower>();
 
         CancelPreview();
@@ -110,9 +122,6 @@ private:
     Maths::Vector2f GetMouseWorldPos()
     {
         sf::Vector2i mouse = sf::Mouse::getPosition();
-
-        std::cout << mouse.x << " " << mouse.y << std::endl;
-
         return Maths::Vector2f((float)mouse.x, (float)mouse.y);
     }
 };
