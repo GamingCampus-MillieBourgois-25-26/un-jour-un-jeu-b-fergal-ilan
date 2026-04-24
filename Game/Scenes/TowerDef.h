@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Tenemy.h"
-#include "Player.h"
-#include "Map.h"
-#include "TowerPlacer.h"
+#include "TowerDef/Tenemy.h"
+#include "TowerDef/Map.h"
+#include "TowerDef/TowerPlacer.h"
 #include "Assets/Texture.h"
 #include "Components/RectangleShapeRenderer.h"
 #include "Components/SpriteRenderer.h"

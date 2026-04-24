@@ -95,27 +95,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="include\BulletPool.cpp" />
+    <ClCompile Include="include\BulletH\BulletPool.cpp" />
     <ClCompile Include="include\Demo\Tile.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\ClickerScene.h" />
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Bouton.h" />
-    <ClInclude Include="include\Bullet.h" />
-    <ClInclude Include="include\BulletPool.h" />
-    <ClInclude Include="include\Enemy.h" />
-    <ClInclude Include="include\Pattern.h" />
-    <ClInclude Include="include\Player.h" />
-    <ClInclude Include="include\Tower.h" />
-    <ClInclude Include="include\Map.h" />
-    <ClInclude Include="include\TowerPlacer.h" />
+    <ClInclude Include="include\Clicker\Bouton.h" />
+    <ClInclude Include="include\BulletH\Bullet.h" />
+    <ClInclude Include="include\BulletH\BulletPool.h" />
+    <ClInclude Include="include\BulletH\Enemy.h" />
+    <ClInclude Include="include\BulletH\Pattern.h" />
+    <ClInclude Include="include\BulletH\Player.h" />
+    <ClInclude Include="include\TowerDef\Tower.h" />
+    <ClInclude Include="include\TowerDef\Map.h" />
+    <ClInclude Include="include\TowerDef\TowerPlacer.h" />
     <ClInclude Include="Scenes\BulletHScene.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
     <ClInclude Include="Scenes\TowerDef.h" />
-    <ClInclude Include="include\Tenemy.h" />
-    <ClInclude Include="include\TowerBullet.h" />
+    <ClInclude Include="include\TowerDef\Tenemy.h" />
+    <ClInclude Include="include\TowerDef\TowerBullet.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">

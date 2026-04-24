@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Player.h"
-#include "Bouton.h"
+#include "Clicker/Bouton.h"
 #include "Assets/Texture.h"
 #include "Components/RectangleShapeRenderer.h"
 #include "Components/SpriteRenderer.h"

@@ -1,7 +1,9 @@
 #pragma once
 
-#include "Player.h"
-#include "Enemy.h"
+#include "BulletH/Bullet.h"
+#include "BulletH/BulletPool.h"
+#include "BulletH/Player.h"
+#include "BulletH/Enemy.h"
 #include "Assets/Texture.h"
 #include "Components/RectangleShapeRenderer.h"
 #include "Components/SpriteRenderer.h"
@@ -9,8 +11,7 @@
 #include "Core/GameObject.h"
 #include "Core/Scene.h"
 #include "Modules/AssetsModule.h"
-#include "Bullet.h"
-#include "BulletPool.h"
+
 
 class Bullet;
 class Enemy;
@@ -33,9 +34,6 @@ public:
 		enemy2->CreateComponent<Enemy>(side);
 
 		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
-		/*Texture* texture = assets_module->LoadAsset<Texture>("logo.png");*/
-
-		/*player->CreateComponent<SpriteRenderer>(texture);*/
 	}
 
 	GameObject* CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color)

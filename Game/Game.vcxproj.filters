@@ -24,7 +24,7 @@
     <ClCompile Include="Scenes\Demo\DemoScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="include\BulletPool.cpp">
+    <ClCompile Include="include\BulletH\BulletPool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\ClickerScene.h">
@@ -35,43 +35,43 @@
     <ClInclude Include="Scenes\DefaultScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Player.h">
+    <ClInclude Include="include\BulletH\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\BulletHScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Enemy.h">
+    <ClInclude Include="include\BulletH\Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Bullet.h">
+    <ClInclude Include="include\BulletH\Bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\TowerDef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\BulletPool.h">
+    <ClInclude Include="include\BulletH\BulletPool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Pattern.h">
+    <ClInclude Include="include\BulletH\Pattern.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Tenemy.h">
+    <ClInclude Include="include\TowerDef\Tenemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Tower.h">
+    <ClInclude Include="include\TowerDef\Tower.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Map.h">
+    <ClInclude Include="include\TowerDef\Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\TowerBullet.h">
+    <ClInclude Include="include\TowerDef\TowerBullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\TowerPlacer.h">
+    <ClInclude Include="include\TowerDef\TowerPlacer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Bouton.h">
+    <ClInclude Include="include\Clicker\Bouton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
