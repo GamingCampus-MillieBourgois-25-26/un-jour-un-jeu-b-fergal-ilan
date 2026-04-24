@@ -14,6 +14,8 @@ class FClick final : public Scene
 {
 public:
 	int score = 0;
+	int clickPower = 1;
+	int upgradeCost = 10;
 	FClick() : Scene("FClickScene")
 	{
 		/*GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Cyan);
