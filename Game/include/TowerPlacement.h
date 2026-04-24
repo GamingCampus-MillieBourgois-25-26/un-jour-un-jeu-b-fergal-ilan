@@ -121,7 +121,7 @@ private:
 
     Maths::Vector2f GetMouseWorldPos()
     {
-        sf::Vector2i mouse = sf::Mouse::getPosition();
+        sf::Vector2i mouse = sf::Mouse::getPosition() - sf::Vector2i(5, 300);
         return Maths::Vector2f((float)mouse.x, (float)mouse.y);
     }
 };
