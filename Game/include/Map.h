@@ -28,8 +28,6 @@ constexpr int MAP_COLS = 30;
 constexpr int MAP_ROWS = 30;
 constexpr float TILE_SIZE = 20.f;
 
-// clang-format off
-// 0 = inutilisable | 1 = route | 2 = constructible
 static constexpr std::array<std::array<int, MAP_COLS>, MAP_ROWS> MAP_DATA =
 { {
         // 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29

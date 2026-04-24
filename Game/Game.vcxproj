@@ -98,9 +98,11 @@
     <ClCompile Include="include\BulletPool.cpp" />
     <ClCompile Include="include\Demo\Tile.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Scenes\ClickerScene.h" />
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Bouton.h" />
     <ClInclude Include="include\Bullet.h" />
     <ClInclude Include="include\BulletPool.h" />
     <ClInclude Include="include\Enemy.h" />
@@ -108,10 +110,12 @@
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\Tower.h" />
     <ClInclude Include="include\Map.h" />
+    <ClInclude Include="include\TowerPlacer.h" />
     <ClInclude Include="Scenes\BulletHScene.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
     <ClInclude Include="Scenes\TowerDef.h" />
     <ClInclude Include="include\Tenemy.h" />
+    <ClInclude Include="include\TowerBullet.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
