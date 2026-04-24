@@ -12,34 +12,16 @@
 class ClickerScene final : public Scene
 {
 public:
-	ClickerScene() : Scene("ClickerScene")
-	{
-		GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Red);
-		player->CreateComponent<Bouton>();
+    ClickerScene() : Scene("ClickerScene")
+    {
+        // Bouton centré dans la fenêtre (600x600)
+        GameObject* button = CreateGameObject("Button");
+        button->SetPosition({ 250.f, 275.f }); 
 
-		GameObject* enemy = CreateDummyGameObject("Enemy", 400.f, sf::Color::Blue);
+        RectangleShapeRenderer* r = button->CreateComponent<RectangleShapeRenderer>();
+        r->SetColor(sf::Color::Green);
+        r->SetSize({ 100.f, 50.f });
 
-		GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
-
-		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
-		Texture* logo = assets_module->LoadAsset<Texture>("logo.png");
-
-		player->CreateComponent<SpriteRenderer>(logo);
-	}
-
-	GameObject* CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color)
-	{
-		GameObject* game_object = CreateGameObject(_name);
-		game_object->SetPosition(Maths::Vector2f(_position, _position));
-
-		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
-		square_collider->SetWidth(20.f);
-		square_collider->SetHeight(20.f);
-
-		RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
-		shape_renderer->SetColor(_color);
-		shape_renderer->SetSize(Maths::Vector2f(200.f, 200.f));
-
-		return game_object;
-	}
+        button->CreateComponent<ClickerButton>();
+    }
 };
