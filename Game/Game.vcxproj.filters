@@ -98,13 +98,13 @@
     <ClInclude Include="include\ShopComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\FClickerGamestate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Demo\TileCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\FScoreDisplayComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FCostDisplayComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

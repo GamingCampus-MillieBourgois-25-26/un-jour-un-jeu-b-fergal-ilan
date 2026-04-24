@@ -13,6 +13,7 @@
 #include "FClickableComponent.h"
 #include "ShopComponent.h"
 #include "FScoreDisplayComponent.h"
+#include "FCostDisplayComponent.h"
 
 class FClick final : public Scene
 {
@@ -35,8 +36,8 @@ public:
 		TextRenderer* text = terxt->CreateComponent<TextRenderer>("score : 0");
 		text->SetColor(sf::Color::White);
 		terxt->SetPosition(Maths::Vector2f(220.f, 70.f));
-		//  AJOUT IMPORTANT
 		terxt->CreateComponent<ScoreDisplayComponent>(&score);
+
 		/*GameObject* terxt = CreateGameObject("score");
 		TextRenderer* text = terxt->CreateComponent<TextRenderer>("score : ");
 		text->SetColor(sf::Color::White);*/
@@ -46,7 +47,14 @@ public:
 		GameObject* shop = CreateDummyGameObject("Shop", 400.f, sf::Color::Green);
 		shop->CreateComponent<ShopComponent>(&score, &clickPower, &upgradeCost);
 		shop->CreateComponent<SpriteRenderer>(shopass);
-		
+		GameObject* costTextObj = CreateGameObject("costText");
+		costTextObj->SetPosition(Maths::Vector2f(350.f, 200.f));
+
+		TextRenderer* costText = costTextObj->CreateComponent<TextRenderer>("Cost : 10");
+		costText->SetColor(sf::Color::Yellow);
+		// lien avec ton cost
+		costTextObj->CreateComponent<CostDisplayComponent>(&upgradeCost); 
+		costTextObj->SetPosition(Maths::Vector2f(400.f, 200.f));
 	}	
 	GameObject* CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color)
 	{
