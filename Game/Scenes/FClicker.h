@@ -4,6 +4,7 @@
 #include "Components/RectangleShapeRenderer.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/SquareCollider.h"
+#include "Components/TextRenderer.h"
 #include "Core/Component.h"
 #include "Core/GameObject.h"
 #include "Core/Scene.h"
@@ -18,8 +19,7 @@ public:
 	int score = 0;
 	int clickPower = 1;
 	int upgradeCost = 10;
-	/*const sf::Font font();
-	sf::Text scoreText(font, score, 50);*/
+	
 
 	FClick() : Scene("FClickScene")
 	{
@@ -28,7 +28,10 @@ public:
 
 		/*GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Cyan);
 		player->CreateComponent<FPlayer>();*/
-
+		// text
+		GameObject* terxt = CreateGameObject("score");
+		TextRenderer* text = terxt->CreateComponent<TextRenderer>("score : ");
+		text->SetColor(sf::Color::White);
 		GameObject* enemy = CreateDummyGameObject("Enemy", 250.f, sf::Color::Blue);
 		enemy->CreateComponent<ClickableComponent>(&score, &clickPower);
 
