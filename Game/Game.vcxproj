@@ -124,6 +124,7 @@
     <ClInclude Include="Scenes\DefaultScene.h" />
     <ClInclude Include="include\Demo\Player.h" />
     <ClInclude Include="include\Demo\Tile.h" />
+    <ClInclude Include="include\Demo\TileCounter.h" />
     <ClInclude Include="include\Demo\TileSpawner.h" />
     <ClInclude Include="Scenes\Demo\DemoScene.h" />
     <ClInclude Include="Scenes\FClicker.h" />
