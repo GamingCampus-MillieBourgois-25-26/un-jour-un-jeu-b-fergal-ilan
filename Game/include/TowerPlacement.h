@@ -10,9 +10,24 @@
 class TowerPlacement : public Component
 {
 public:
+    bool m_keyPressed = false;
     void Update(float dt) override
     {
         HandleInput();
+
+        
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::T))
+        {
+            if (!m_keyPressed)
+            {
+                StartPreview();
+                m_keyPressed = true;
+            }
+        }
+        else
+        {
+            m_keyPressed = false;
+        }
 
         if (m_preview)
         {
@@ -42,7 +57,7 @@ public:
 
         auto* renderer = m_preview->CreateComponent<RectangleShapeRenderer>();
         renderer->SetSize({ 40.f, 40.f });
-        renderer->SetColor(sf::Color(0, 255, 0, 120));
+        renderer->SetColor(sf::Color::Green);
 
         m_preview->SetPosition(GetMouseWorldPos());
     }
@@ -96,10 +111,8 @@ private:
     {
         sf::Vector2i mouse = sf::Mouse::getPosition();
 
-        return Maths::Vector2f(
-            (float)mouse.x,
-            (float)mouse.y
-        );
+        std::cout << mouse.x << " " << mouse.y << std::endl;
 
+        return Maths::Vector2f((float)mouse.x, (float)mouse.y);
     }
 };
