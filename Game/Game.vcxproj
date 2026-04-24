@@ -10,6 +10,7 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -18,7 +19,9 @@
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>Game</ProjectName>
   </PropertyGroup>
+
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
@@ -26,6 +29,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <LocalDebuggerWorkingDirectory>$(SolutionDir)</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -34,28 +38,35 @@
     <CharacterSet>Unicode</CharacterSet>
     <LocalDebuggerWorkingDirectory>$(SolutionDir)</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
+
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="Shared" />
+
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+
+  <PropertyGroup>
     <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(SolutionDir)include;$(ExternalIncludePath)</ExternalIncludePath>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>$(SolutionDir)</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
-    <ExternalIncludePath>$(SolutionDir)include;$(ExternalIncludePath)</ExternalIncludePath>
-    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerWorkingDirectory>$(SolutionDir)</LocalDebuggerWorkingDirectory>
-  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalOptions>/IGNORE:4099 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -63,16 +74,16 @@
       <PreprocessorDefinitions>SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);SFML_STATIC;SFML_STATIC;SFML_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)include\ImGUI-SFML;$(SolutionDir)include\ImGUI;$(SolutionDir)include;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <EnableModules>true</EnableModules>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\Debug;$(SolutionDir)lib;$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetyped.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -82,8 +93,7 @@
       <PreprocessorDefinitions>SFML_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);SFML_STATIC;SFML_STATIC;SFML_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)include\ImGUI-SFML;$(SolutionDir)include\ImGUI;$(SolutionDir)include;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <BuildStlModules>true</BuildStlModules>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -94,34 +104,27 @@
       <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+
   <ItemGroup>
-    <ClCompile Include="include\BulletH\BulletPool.cpp" />
     <ClCompile Include="include\Demo\Tile.cpp" />
+    <ClCompile Include="include\Demo\TileSpawner.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Scenes\ClickerScene.h" />
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
   </ItemGroup>
+
   <ItemGroup>
-    <ClInclude Include="include\Clicker\Bouton.h" />
-    <ClInclude Include="include\BulletH\Bullet.h" />
-    <ClInclude Include="include\BulletH\BulletPool.h" />
-    <ClInclude Include="include\BulletH\Enemy.h" />
-    <ClInclude Include="include\BulletH\Pattern.h" />
-    <ClInclude Include="include\BulletH\Player.h" />
-    <ClInclude Include="include\TowerDef\Tower.h" />
-    <ClInclude Include="include\TowerDef\Map.h" />
-    <ClInclude Include="include\TowerDef\TowerPlacer.h" />
-    <ClInclude Include="Scenes\BulletHScene.h" />
-    <ClInclude Include="Scenes\DefaultScene.h" />
-    <ClInclude Include="Scenes\TowerDef.h" />
-    <ClInclude Include="include\TowerDef\Tenemy.h" />
-    <ClInclude Include="include\TowerDef\TowerBullet.h" />
+    <ClInclude Include="include\Demo\Player.h" />
+    <ClInclude Include="include\Demo\Tile.h" />
+    <ClInclude Include="include\Demo\TileSpawner.h" />
+    <ClInclude Include="Scenes\Demo\DemoScene.h" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
       <Project>{fae7003c-61cf-41e6-9b58-70e97d3f7878}</Project>
     </ProjectReference>
   </ItemGroup>
+
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>
