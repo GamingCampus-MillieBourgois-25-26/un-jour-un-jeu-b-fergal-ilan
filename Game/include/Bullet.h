@@ -2,8 +2,11 @@
 #include "Core/Component.h"
 #include "Core/Scene.h"
 #include "FPlayer.h"
+#include "FBoss.h"
 #include <cmath>
 #include <iostream>
+#include "BulletPool.h"
+
 class Bullet : public Component
 {
 public:
@@ -56,6 +59,16 @@ public:
                         Deactivate();
                         return;
                     }
+                }
+            }
+            if (obj->GetName() == "Boss")
+            {
+                auto bossComp = obj->GetComponent<Boss>();
+                if (bossComp)
+                {
+                    bossComp->TakeDamage(1);
+                    Deactivate();
+                    return;
                 }
             }
         }

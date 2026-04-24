@@ -11,6 +11,7 @@
 #include "Core/Component.h"
 #include "Core/GameObject.h"
 #include "Core/Scene.h"
+#include "FBoss.h"
 #include "Modules/AssetsModule.h"
 class Bullet;
 class EnemyShooter;
@@ -23,8 +24,10 @@ public:
 		GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Cyan);
 		player->CreateComponent<FPlayer>();
 
-		GameObject* enemy = CreateDummyGameObject("Enemy", 100.f, sf::Color::Blue);
-        enemy->CreateComponent<EnemyShooter>();
+		/*GameObject* enemy = CreateDummyGameObject("Enemy", 100.f, sf::Color::Blue);
+        enemy->CreateComponent<EnemyShooter>();*/
+		GameObject* boss = CreateGameObject("Boss");
+		boss->CreateComponent<Boss>();
 
 		/*GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Yellow);*/
 

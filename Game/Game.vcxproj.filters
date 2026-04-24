@@ -62,5 +62,8 @@
     <ClInclude Include="include\BulletPool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\FBoss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

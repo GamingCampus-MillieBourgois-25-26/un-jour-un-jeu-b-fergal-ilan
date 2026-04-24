@@ -104,6 +104,7 @@
     <ClInclude Include="include\Bullet.h" />
     <ClInclude Include="include\BulletPool.h" />
     <ClInclude Include="include\EnemyShooter.h" />
+    <ClInclude Include="include\FBoss.h" />
     <ClInclude Include="include\FPlayer.h" />
     <ClInclude Include="include\Patterns.h" />
     <ClInclude Include="Scenes\Fbuller_hell.h" />
