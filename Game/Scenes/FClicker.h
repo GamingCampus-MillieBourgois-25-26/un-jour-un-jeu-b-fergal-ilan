@@ -34,7 +34,7 @@ public:
 
 		TextRenderer* text = terxt->CreateComponent<TextRenderer>("score : 0");
 		text->SetColor(sf::Color::White);
-
+		terxt->SetPosition(Maths::Vector2f(220.f, 70.f));
 		//  AJOUT IMPORTANT
 		terxt->CreateComponent<ScoreDisplayComponent>(&score);
 		/*GameObject* terxt = CreateGameObject("score");
