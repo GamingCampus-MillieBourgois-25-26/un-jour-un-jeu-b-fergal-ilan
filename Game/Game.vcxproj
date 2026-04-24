@@ -112,6 +112,7 @@
     <ClInclude Include="include\FTower.h" />
     <ClInclude Include="include\Patterns.h" />
     <ClInclude Include="include\TowerPlacement.h" />
+    <ClInclude Include="include\wavemanager.h" />
     <ClInclude Include="Scenes\Fbuller_hell.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />

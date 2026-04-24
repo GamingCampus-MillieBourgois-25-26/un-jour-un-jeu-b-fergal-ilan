@@ -12,6 +12,7 @@
 #include "FEnemyMovement.h"
 #include "FTower.h"
 #include "EnemyWave.h"
+#include "wavemanager.h"
 #include "TowerPlacement.h"
 #include <iostream>
 #include <algorithm>
@@ -27,13 +28,16 @@ public:
 		player->CreateComponent<FPlayer>();*/
 		GameObject* tower = CreateDummyGameObject("Tower", 300.f, sf::Color::Red);
 		tower->CreateComponent<Tower>();
-		SpawnEnemy();
+
+		
 
 		/*GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Yellow);*/
-		GameObject* manager = CreateGameObject("TowerPlacement");
-		manager->CreateComponent<TowerPlacement>();
+		GameObject* tplace = CreateGameObject("TowerPlacement");
+		tplace->CreateComponent<TowerPlacement>();
 
-		m_wave = EnemyWave(5, 0.5f);  
+		GameObject* manager = CreateGameObject("WaveManager");
+		manager->CreateComponent<WaveManager>();
+		  
 		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
 		/*Texture* texture = assets_module->LoadAsset<Texture>("logo.png");
 
@@ -54,59 +58,12 @@ public:
 
 		return game_object;
 	}
-	void NextWave()
-	{
-		m_currentWave++;
-
-		int enemyCount = 5 + m_currentWave * 2;
-
-		m_wave.Reset(enemyCount);
-	}
 
 	std::vector<GameObject*>& GetEnemies()
 	{
 		return m_enemies;
 	}
-	// ne marche pas 
-	void Update(float _delta_time)
-	{
-		Scene::Update(_delta_time);
-		
-		m_wave.Update(_delta_time);
-
-		if (m_wave.CanSpawn())
-		{
-			std::cout << "CAN SPAWN" << std::endl;
-			SpawnEnemy();
-			m_wave.ConsumeSpawn();
-		}
-
-		if (m_wave.IsFinished() && m_enemies.size() == 0)
-		{
-			NextWave();
-		}
-
-		m_enemies.erase(
-			std::remove_if(m_enemies.begin(), m_enemies.end(),
-				[](GameObject* e)
-				{
-					std::cout << "ERASE CHECK" << std::endl;
-					return e == nullptr || e->IsMarkedForDeletion();
-				}),
-			m_enemies.end()
-		);
-	}
-	void SpawnEnemy()
-	{
-		GameObject* enemy = CreateDummyGameObject("Enemy", 0.f, sf::Color::Blue);
-
-		enemy->SetPosition(path[0]);
-
-		auto* move = enemy->CreateComponent<EnemyMovement>();
-		move->SetPath(path);
-
-		m_enemies.push_back(enemy);
-	}
+	
 	const std::vector<GameObject*>& GetEnemies() const { return m_enemies; }
 	std::vector<Maths::Vector2f> path = {
 	{0.f, 100.f},
@@ -116,7 +73,6 @@ public:
 	};
 private:
 	std::vector<GameObject*> m_enemies;
-	EnemyWave m_wave;
 };
  /* idee
 	money system
