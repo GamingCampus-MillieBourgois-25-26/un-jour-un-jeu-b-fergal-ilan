@@ -8,15 +8,19 @@
 #include "Core/GameObject.h"
 #include "Core/Scene.h"
 #include "Modules/AssetsModule.h"
+#include "FClickableComponent.h"
+
 class FClick final : public Scene
 {
 public:
+	int score = 0;
 	FClick() : Scene("FClickScene")
 	{
 		/*GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Cyan);
 		player->CreateComponent<FPlayer>();*/
 
 		GameObject* enemy = CreateDummyGameObject("Enemy", 250.f, sf::Color::Blue);
+		enemy->CreateComponent<ClickableComponent>(&score);
 
 		/*GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Yellow);*/
 
@@ -28,11 +32,11 @@ public:
 	GameObject* CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color)
 	{
 		GameObject* game_object = CreateGameObject(_name);
-		game_object->SetPosition(Maths::Vector2f(_position, _position));
+		game_object->SetPosition(Maths::Vector2f(_position, 250.f));
 
 		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
-		square_collider->SetWidth(10.f);
-		square_collider->SetHeight(10.f);
+		square_collider->SetWidth(40.f);
+		square_collider->SetHeight(40.f);
 
 		RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
 		shape_renderer->SetColor(_color);
