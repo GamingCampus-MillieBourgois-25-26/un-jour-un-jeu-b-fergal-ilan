@@ -98,5 +98,8 @@
     <ClInclude Include="include\ShopComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\FClickerGamestate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

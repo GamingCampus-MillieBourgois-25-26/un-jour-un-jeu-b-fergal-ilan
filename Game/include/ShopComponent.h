@@ -53,5 +53,7 @@ public:
         }
 
         wasPressed = isPressed;
+        /*std::cout << "Mouse: " << mousePos.x << "," << mousePos.y << std::endl;
+        std::cout << "Shop: " << pos.x << "," << pos.y << std::endl;*/
     }
 };

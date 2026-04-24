@@ -110,6 +110,7 @@
     <ClInclude Include="include\EnemyShooter.h" />
     <ClInclude Include="include\EnemyWave.h" />
     <ClInclude Include="include\FClickableComponent.h" />
+    <ClInclude Include="include\FClickerGamestate.h" />
     <ClInclude Include="include\FEnemyMovement.h" />
     <ClInclude Include="include\FPlayer.h" />
     <ClInclude Include="include\FProjectile.h" />

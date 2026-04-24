@@ -1,0 +1,13 @@
+#pragma once
+#include "FPlayer.h"
+#include "Assets/Texture.h"
+#include "Components/RectangleShapeRenderer.h"
+#include "Components/SpriteRenderer.h"
+#include "Components/SquareCollider.h"
+#include "Core/Component.h"
+#include "Core/GameObject.h"
+#include "Core/Scene.h"
+#include "Modules/AssetsModule.h"
+#include <SFML/Graphics.hpp>
+#include "FClickableComponent.h"
+#include "ShopComponent.h"

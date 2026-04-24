@@ -18,8 +18,14 @@ public:
 	int score = 0;
 	int clickPower = 1;
 	int upgradeCost = 10;
+	/*const sf::Font font();
+	sf::Text scoreText(font, score, 50);*/
+
 	FClick() : Scene("FClickScene")
 	{
+		AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
+		Texture* shopass = assets_module->LoadAsset<Texture>("fergal/clicker/shop.png");
+
 		/*GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Cyan);
 		player->CreateComponent<FPlayer>();*/
 
@@ -28,7 +34,9 @@ public:
 
 		GameObject* shop = CreateDummyGameObject("Shop", 400.f, sf::Color::Green);
 		shop->CreateComponent<ShopComponent>(&score, &clickPower, &upgradeCost);
-	}
+		shop->CreateComponent<SpriteRenderer>(shopass);
+		
+	}	
 	GameObject* CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color)
 	{
 		GameObject* game_object = CreateGameObject(_name);
@@ -41,6 +49,7 @@ public:
 		RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
 		shape_renderer->SetColor(_color);
 		shape_renderer->SetSize(Maths::Vector2f(40.f, 40.f));
+		//shape_renderer->SetPivot({ 32.f, 32.f }); // centre
 
 		return game_object;
 	}
