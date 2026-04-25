@@ -100,19 +100,12 @@ private:
 
     void CleanDeadBullets()
     {
-        if (!scene) return;
-
         bullets.erase(
             std::remove_if(bullets.begin(), bullets.end(),
-                [this](GameObject* go)
+                [](GameObject* go)
                 {
                     TowerBullet* b = go->GetComponent<TowerBullet>();
-                    if (b && !b->IsAlive())
-                    {
-                        scene->DestroyGameObject(go);
-                        return true;
-                    }
-                    return false;
+                    return b && !b->IsAlive();
                 }),
             bullets.end()
         );

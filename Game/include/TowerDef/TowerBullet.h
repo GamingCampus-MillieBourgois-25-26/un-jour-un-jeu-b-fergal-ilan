@@ -21,7 +21,10 @@ public:
             ->GetModule<WindowModule>()->GetSize();
 
         if (pos.x < 0.f || pos.x > win.x || pos.y < 0.f || pos.y > win.y)
+        {
+            GetOwner()->MarkForDeletion();
             alive = false;
+        }
     }
 
     bool IsAlive() const { return alive; }
