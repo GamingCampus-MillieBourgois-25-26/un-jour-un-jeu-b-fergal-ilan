@@ -71,9 +71,9 @@ public:
             if (phase == 0)
                 Patterns::ShootCircle(GetOwner());
             else if (phase == 1)
-                Patterns::ShootSpiral(GetOwner());
+                Patterns::ShootAtPlayer(GetOwner());  
             else if (phase == 2)
-                Patterns::ShootWave(GetOwner());
+                Patterns::ShootSpiral(GetOwner());
             else
                 Patterns::ShootLaser(GetOwner());
 
