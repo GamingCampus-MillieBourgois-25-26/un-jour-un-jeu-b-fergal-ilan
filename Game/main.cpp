@@ -10,7 +10,7 @@ int main(const int _argc, const char** _argv)
 
     engine->Init(_argc, _argv);
 
-    engine->GetModuleManager()->GetModule<SceneModule>()->SetScene<ClickerScene>();
+    engine->GetModuleManager()->GetModule<SceneModule>()->SetScene<BulletHScene>();
 
     engine->Run();
 

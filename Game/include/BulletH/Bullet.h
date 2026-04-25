@@ -1,69 +1,66 @@
+ï»¿
 #pragma once
 #include "Core/Component.h"
-#include "Core/Scene.h"
 #include "Player.h"
+#include "Core/Scene.h"      
+#include "Core/GameObject.h" 
 #include <cmath>
-#include <iostream>
+
 class Bullet : public Component
 {
 public:
-    GameObject* player = nullptr;
     Maths::Vector2f velocity;
     bool active = false;
 
-    void Activate(const Maths::Vector2f& pos, const Maths::Vector2f& vel)
+    void Activate(const Maths::Vector2f& _pos, const Maths::Vector2f& _vel)
     {
         active = true;
-        velocity = vel;
-        GetOwner()->SetPosition(pos);
+        velocity = _vel;
+        GetOwner()->SetPosition(_pos);
+        GetOwner()->Enable();
     }
 
     void Deactivate()
     {
         active = false;
-        GetOwner()->SetPosition(Maths::Vector2f(-1000.f, -1000.f));
+        GetOwner()->SetPosition({ -2000.f, -2000.f });
+        GetOwner()->Disable(); 
     }
 
-    void Update(float _delta_time) override
+    void Update(float _dt) override
     {
         if (!active) return;
 
-        auto pos = GetOwner()->GetPosition();
-        pos = pos + velocity * _delta_time;
+        Maths::Vector2f pos = GetOwner()->GetPosition();
+        pos.x += velocity.x * _dt;
+        pos.y += velocity.y * _dt;
         GetOwner()->SetPosition(pos);
 
-        //COLLISION CHECK
+        // Collision player via GetScene() qui existe maintenant
         Scene* scene = GetOwner()->GetScene();
+        if (!scene) return;
 
-        for (auto& obj : scene->GetGameObjects()) // adapte si ton engine a un autre système
+        for (const auto& go : scene->GetGameObjects())
         {
-            if (obj->GetName() == "Player")
+            if (go->GetName() != "Player") continue;
+
+            Player* p = go->GetComponent<Player>();
+            if (!p) continue;
+
+            Maths::Vector2f diff = pos - p->GetPosition();
+            float dist2 = diff.x * diff.x + diff.y * diff.y;
+            constexpr float r = 15.f + 3.f;
+
+            if (dist2 < r * r)
             {
-                Player* playerComp = obj->GetComponent<Player>();
-                if ((playerComp))
-                {
-                    Maths::Vector2f diff = pos - playerComp->GetPosition();
-                    float dist2 = diff.x * diff.x + diff.y * diff.y;
-
-                    float radius = 15.f + 3.f;
-
-                    if (dist2 < radius * radius)
-                    {
-                        std::cout << "HIT PLAYER!\n";
-
-                        playerComp->TakeDamage();
-
-                        Deactivate();
-                        return;
-                    }
-                }
+                p->TakeDamage();
+                Deactivate();
+                return;
             }
         }
 
-        // hors écran
-        if (pos.x < -100 || pos.x > 2000 || pos.y < -100 || pos.y > 2000)
-        {
+        // Hors Ã©cran
+        if (pos.x < -50.f || pos.x > 650.f || pos.y < -50.f || pos.y > 650.f)
             Deactivate();
-        }
     }
 };

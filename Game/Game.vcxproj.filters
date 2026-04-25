@@ -74,5 +74,8 @@
     <ClInclude Include="include\Clicker\Bouton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Clicker\BoostList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

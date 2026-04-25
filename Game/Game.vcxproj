@@ -102,6 +102,7 @@
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Clicker\BoostList.h" />
     <ClInclude Include="include\Clicker\Bouton.h" />
     <ClInclude Include="include\BulletH\Bullet.h" />
     <ClInclude Include="include\BulletH\BulletPool.h" />
