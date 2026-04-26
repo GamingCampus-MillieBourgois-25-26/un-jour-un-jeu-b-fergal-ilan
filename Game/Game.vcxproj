@@ -96,19 +96,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="include\BulletH\BulletPool.cpp" />
+    <ClCompile Include="include\Clicker\GameState.cpp" />
     <ClCompile Include="include\Demo\Tile.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\ClickerScene.h" />
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Clicker\BoostList.h" />
     <ClInclude Include="include\Clicker\Bouton.h" />
     <ClInclude Include="include\BulletH\Bullet.h" />
     <ClInclude Include="include\BulletH\BulletPool.h" />
     <ClInclude Include="include\BulletH\Enemy.h" />
     <ClInclude Include="include\BulletH\Pattern.h" />
     <ClInclude Include="include\BulletH\Player.h" />
+    <ClInclude Include="include\Clicker\GameState.h" />
+    <ClInclude Include="include\Clicker\ShopButton.h" />
     <ClInclude Include="include\TowerDef\Tower.h" />
     <ClInclude Include="include\TowerDef\Map.h" />
     <ClInclude Include="include\TowerDef\TowerPlacer.h" />

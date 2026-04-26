@@ -30,6 +30,9 @@
     <ClCompile Include="Scenes\ClickerScene.h">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="include\Clicker\GameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scenes\DefaultScene.h">
@@ -74,10 +77,13 @@
     <ClInclude Include="include\Clicker\Bouton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Clicker\BoostList.h">
+    <ClInclude Include="include\TowerDef\WaveManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\TowerDef\WaveManager.h">
+    <ClInclude Include="include\Clicker\GameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Clicker\ShopButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
