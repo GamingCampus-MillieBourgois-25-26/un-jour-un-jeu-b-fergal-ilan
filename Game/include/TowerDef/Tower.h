@@ -1,11 +1,19 @@
+﻿// Tower.h
 #pragma once
 #include <cmath>
 #include <vector>
+#include <queue>
 #include "Core/Component.h"
 #include "Core/Scene.h"
 #include "Components/RectangleShapeRenderer.h"
 #include "Modules/SceneModule.h"
 #include "TowerBullet.h"
+
+struct BulletSpawnRequest
+{
+    Maths::Vector2f origin;
+    Maths::Vector2f direction;
+};
 
 class Tower : public Component
 {
@@ -26,10 +34,16 @@ public:
         if (fireTimer >= fireRate)
         {
             fireTimer = 0.f;
-            TryShoot();
+            QueueShoot(); // on met en queue, on ne cree pas encore
         }
 
         CleanDeadBullets();
+    }
+
+    // Present est appelé APRES tous les Updates → safe pour CreateGameObject
+    void Present() override
+    {
+        FlushSpawnQueue();
     }
 
 private:
@@ -39,6 +53,7 @@ private:
 
     Scene* scene = nullptr;
     std::vector<GameObject*> bullets;
+    std::queue<BulletSpawnRequest> spawnQueue;
 
     static int bulletId;
 
@@ -52,9 +67,8 @@ private:
 
         for (const auto& go : scene->GetGameObjects())
         {
-            // On identifie les ennemis par leur nom (pr�fixe "Enemy")
-            if (go->GetName().rfind("Enemy", 0) != 0)
-                continue;
+            if (go->GetName().rfind("Enemy", 0) != 0) continue;
+            if (go->IsMarkedForDeletion()) continue;
 
             const Maths::Vector2f ePos = go->GetPosition();
             const float dx = ePos.x - origin.x;
@@ -71,7 +85,7 @@ private:
         return closest;
     }
 
-    void TryShoot()
+    void QueueShoot()
     {
         GameObject* target = FindClosestEnemy();
         if (!target) return;
@@ -83,19 +97,31 @@ private:
         float dy = ePos.y - origin.y;
         const float len = std::sqrt(dx * dx + dy * dy);
         if (len == 0.f) return;
-        dx /= len;
-        dy /= len;
 
-        GameObject* bulletGO = scene->CreateGameObject("TowerBullet_" + std::to_string(bulletId++));
-        bulletGO->SetPosition(origin);
+        spawnQueue.push({ origin, { dx / len, dy / len } });
+    }
 
-        RectangleShapeRenderer* r = bulletGO->CreateComponent<RectangleShapeRenderer>();
-        r->SetColor(sf::Color::White);
-        r->SetSize({ 5.f, 5.f });
+    void FlushSpawnQueue()
+    {
+        while (!spawnQueue.empty())
+        {
+            const BulletSpawnRequest req = spawnQueue.front();
+            spawnQueue.pop();
 
-        bulletGO->CreateComponent<TowerBullet>(Maths::Vector2f{ dx, dy }, 400.f);
+            if (!scene) continue;
 
-        bullets.push_back(bulletGO);
+            GameObject* bulletGO = scene->CreateGameObject(
+                "TowerBullet_" + std::to_string(bulletId++));
+            bulletGO->SetPosition(req.origin);
+
+            RectangleShapeRenderer* r = bulletGO->CreateComponent<RectangleShapeRenderer>();
+            r->SetColor(sf::Color::White);
+            r->SetSize({ 5.f, 5.f });
+
+            bulletGO->CreateComponent<TowerBullet>(req.direction, 400.f);
+
+            bullets.push_back(bulletGO);
+        }
     }
 
     void CleanDeadBullets()

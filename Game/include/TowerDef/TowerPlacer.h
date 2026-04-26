@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <unordered_set>
 #include <string>
 #include "Core/Component.h"
@@ -8,6 +8,7 @@
 #include "Modules/SceneModule.h"
 #include "Map.h"
 #include "Tower.h"
+#include <iostream>
 
 class TowerPlacer : public Component
 {
@@ -26,9 +27,15 @@ public:
         const Maths::Vector2i mousePos = InputModule::GetMousePosition();
         const Maths::Vector2f worldPos = { (float)mousePos.x, (float)mousePos.y };
 
-        // Tile cliquée
+        // Tile cliquÃ©e
         const int col = static_cast<int>(worldPos.x / TILE_SIZE);
         const int row = static_cast<int>(worldPos.y / TILE_SIZE);
+
+        std::cout << "Mouse: " << mousePos.x << ", " << mousePos.y
+            << " â†’ Tile: " << col << ", " << row
+            << " â†’ Center: " << MapComponent::TileCenter(col, row).x
+            << ", " << MapComponent::TileCenter(col, row).y << "\n";
+
 
         if (col < 0 || col >= MAP_COLS || row < 0 || row >= MAP_ROWS)
             return;
@@ -36,7 +43,7 @@ public:
         if (MapComponent::GetTileAt(worldPos) != TileType::Buildable)
             return;
 
-        // Clé unique pour éviter deux tours sur la même tile
+        // ClÃ© unique pour Ã©viter deux tours sur la mÃªme tile
         const std::string key = std::to_string(col) + "_" + std::to_string(row);
         if (occupiedTiles.count(key))
             return;
@@ -48,7 +55,10 @@ public:
 
         static int towerId = 0;
         GameObject* towerGO = scene->CreateGameObject("Tower_" + std::to_string(towerId++));
-        towerGO->SetPosition(center);
+        towerGO->SetPosition({
+                center.x - TILE_SIZE * 0.5f,
+                center.y - TILE_SIZE * 0.5f
+            });
 
         RectangleShapeRenderer* r = towerGO->CreateComponent<RectangleShapeRenderer>();
         r->SetColor(sf::Color::Cyan);

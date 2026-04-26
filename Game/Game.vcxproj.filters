@@ -77,5 +77,8 @@
     <ClInclude Include="include\Clicker\BoostList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\TowerDef\WaveManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -112,6 +112,7 @@
     <ClInclude Include="include\TowerDef\Tower.h" />
     <ClInclude Include="include\TowerDef\Map.h" />
     <ClInclude Include="include\TowerDef\TowerPlacer.h" />
+    <ClInclude Include="include\TowerDef\WaveManager.h" />
     <ClInclude Include="Scenes\BulletHScene.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
     <ClInclude Include="Scenes\TowerDef.h" />
