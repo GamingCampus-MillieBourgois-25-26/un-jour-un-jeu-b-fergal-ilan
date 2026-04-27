@@ -7,6 +7,7 @@
 #include "Core/Component.h"
 #include "Core/GameObject.h"
 #include "Core/Scene.h"
+#include "Components/TextRenderer.h"
 #include "Modules/AssetsModule.h"
 #include "clicker.h"
 class Match3 final : public Scene
@@ -15,7 +16,6 @@ public:
 	static const int WIDTH = 8;
 	static const int HEIGHT = 8;
 	GameObject* firstSelected = nullptr;
-
 	int grid[HEIGHT][WIDTH];
 	GameObject* tiles[HEIGHT][WIDTH];
 	Match3() : Scene("Match3Scene")
@@ -45,6 +45,12 @@ public:
 						OnTileClicked(clicked);
 					};
 			}
+		}
+		if (HasMatch())
+		{
+			RemoveMatches();
+			ApplyGravity();
+			UpdateVisuals();
 		}
 	}
 	ClickableComponent* GetClickable(GameObject* obj)
@@ -99,17 +105,117 @@ public:
 
 		return (dx + dy == 1);
 	}
+	bool HasMatch()
+	{
+		// horizontal
+		for (int y = 0; y < HEIGHT; y++)
+		{
+			for (int x = 0; x < WIDTH - 2; x++)
+			{
+				int v = grid[y][x];
+				if (v == grid[y][x + 1] && v == grid[y][x + 2])
+					return true;
+			}
+		}
+
+		// vertical
+		for (int x = 0; x < WIDTH; x++)
+		{
+			for (int y = 0; y < HEIGHT - 2; y++)
+			{
+				int v = grid[y][x];
+				if (v == grid[y + 1][x] && v == grid[y + 2][x])
+					return true;
+			}
+		}
+
+		return false;
+	}
+	void RemoveMatches()
+	{
+		for (int y = 0; y < HEIGHT; y++)
+		{
+			for (int x = 0; x < WIDTH - 2; x++)
+			{
+				int v = grid[y][x];
+
+				if (v == grid[y][x + 1] && v == grid[y][x + 2])
+				{
+					grid[y][x] = -1;
+					grid[y][x + 1] = -1;
+					grid[y][x + 2] = -1;
+				}
+			}
+		}
+
+		// vertical pareil (copie logique)
+	}
+	void ApplyGravity()
+	{
+		for (int x = 0; x < WIDTH; x++)
+		{
+			for (int y = HEIGHT - 1; y >= 0; y--)
+			{
+				if (grid[y][x] == -1)
+				{
+					for (int k = y; k > 0; k--)
+					{
+						grid[k][x] = grid[k - 1][x];
+					}
+
+					grid[0][x] = rand() % 5;
+				}
+			}
+		}
+	}
+	void UpdateVisuals()
+	{
+		for (int y = 0; y < HEIGHT; y++)
+		{
+			for (int x = 0; x < WIDTH; x++)
+			{
+				auto renderer = tiles[y][x]->GetComponent<RectangleShapeRenderer>();
+				renderer->SetColor(GetColorFromType(grid[y][x]));
+			}
+		}
+	}
+
 	void OnTileClicked(GameObject* tile)
 	{
+		auto renderer = tile->GetComponent<RectangleShapeRenderer>();
+
 		if (!firstSelected)
 		{
 			firstSelected = tile;
+
+			// highlight
+			renderer->SetColor(sf::Color::White);
 			return;
 		}
+
+		// remettre la bonne couleur à la première case
+		auto firstRenderer = firstSelected->GetComponent<RectangleShapeRenderer>();
+
+		auto firstClickable = GetClickable(firstSelected);
+		int type = grid[firstClickable->gridY][firstClickable->gridX];
+
+		firstRenderer->SetColor(GetColorFromType(type));
 
 		if (AreAdjacent(firstSelected, tile))
 		{
 			SwapTiles(firstSelected, tile);
+
+			if (!HasMatch())
+			{
+				// revert
+				SwapTiles(firstSelected, tile);
+			}
+			else
+			{
+				RemoveMatches();
+				ApplyGravity();
+				UpdateVisuals();
+			}
 		}
 
 		firstSelected = nullptr;
