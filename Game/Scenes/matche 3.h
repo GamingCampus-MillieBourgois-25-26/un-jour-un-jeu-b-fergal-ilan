@@ -5,6 +5,7 @@
 #include "Core/GameObject.h"
 #include "clicker.h"
 #include "BoardResolver.h"
+#include "ScoreDisplayComponent.h"
 
 class Match3 final : public Scene
 {
@@ -13,8 +14,9 @@ public:
     static const int HEIGHT = 8;
     static const int TILE_SIZE = 50;
 
+    int         score = 0;  // score du match3
     int         grid[HEIGHT][WIDTH];
-    GameObject* tiles[HEIGHT][WIDTH]; // tiles[row][col] toujours a (col*50, row*50)
+    GameObject* tiles[HEIGHT][WIDTH];
     BoardResolver* resolver = nullptr;
 
     int selectedCol = -1;
@@ -25,7 +27,14 @@ public:
         srand(static_cast<unsigned int>(time(NULL)));
         InitGrid();
 
-        // Creer les tiles — position FIXE, jamais bougee
+        // Affichage du score en haut a gauche
+        GameObject* scoreGO = CreateGameObject("ScoreText");
+        scoreGO->SetPosition({ 10.f, 10.f });
+        TextRenderer* txt = scoreGO->CreateComponent<TextRenderer>("Score : 0");
+        txt->SetColor(sf::Color::White);
+        scoreGO->CreateComponent<ScoreDisplayComponent>(&score);
+
+        // Tiles fixes
         for (int y = 0; y < HEIGHT; y++)
         {
             for (int x = 0; x < WIDTH; x++)
@@ -33,8 +42,10 @@ public:
                 GameObject* tile = CreateGameObject(
                     "Tile_" + std::to_string(x) + "_" + std::to_string(y));
 
-                // Position fixe pour toujours
-                tile->SetPosition({ (float)(x * TILE_SIZE), (float)(y * TILE_SIZE) });
+                tile->SetPosition({
+                    (float)(x * TILE_SIZE + 50), // +50 pour laisser place au texte
+                    (float)(y * TILE_SIZE + 50)
+                    });
 
                 SquareCollider* col = tile->CreateComponent<SquareCollider>();
                 col->SetWidth(40.f);
@@ -63,6 +74,7 @@ public:
         resolver->tiles = tiles;
         resolver->width = WIDTH;
         resolver->height = HEIGHT;
+        resolver->score = &score; // brancher le score
     }
 
     void OnTileClicked(int col, int row)

@@ -25,6 +25,9 @@ public:
     int width = 8;
     int height = 8;
 
+    int* score = nullptr;
+    int pointsPerTile = 10; // points par tile supprimee
+
     // Callback appelee quand tout est resolu
     std::function<void()> onResolveDone;
 
@@ -257,16 +260,15 @@ private:
             else            grid[y + i][x] = -1;
         }
 
+        // Ajouter les points
+        if (score)
+            *score += count * pointsPerTile;
+
+        // Bonus
         if (count == 4)
-        {
-            if (horizontal) grid[y][x] = 100;
-            else            grid[y][x] = 100;
-        }
+            grid[y][x] = horizontal ? 100 : 100;
         else if (count >= 5)
-        {
-            if (horizontal) grid[y][x] = 200;
-            else            grid[y][x] = 200;
-        }
+            grid[y][x] = horizontal ? 200 : 200;
     }
 
     void DoApplyGravity()

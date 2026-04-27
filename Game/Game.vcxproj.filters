@@ -50,7 +50,10 @@
     <ClInclude Include="include\clicker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\BoardResolver.h">
+    <ClInclude Include="include\BoardResolver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScoreDisplayComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
