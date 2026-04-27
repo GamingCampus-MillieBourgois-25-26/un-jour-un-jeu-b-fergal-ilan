@@ -34,7 +34,6 @@ public:
 
         if (isPressed && !wasPressed && inside)
         {
-            std::cout << "clicker" << std::endl;
             if (onClick)
                 onClick(GetOwner());
         }

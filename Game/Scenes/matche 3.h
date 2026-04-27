@@ -46,12 +46,6 @@ public:
 					};
 			}
 		}
-		if (HasMatch())
-		{
-			RemoveMatches();
-			ApplyGravity();
-			UpdateVisuals();
-		}
 	}
 	ClickableComponent* GetClickable(GameObject* obj)
 	{
@@ -66,9 +60,27 @@ public:
 		case 2: return sf::Color::Blue;
 		case 3: return sf::Color::Yellow;
 		case 4: return sf::Color::Magenta;
+		case 100: return sf::Color::Cyan; // not sure
+		case 200: return sf::Color::White;// not sure
 		default: return sf::Color::White;
 		}
 	}
+	/*void ResolveBoard()
+	{
+		bool again = true;
+
+		while (again)
+		{
+			again = HasMatch();
+
+			if (again)
+			{
+				RemoveMatches();
+				ApplyGravity();
+				UpdateVisuals();
+			}
+		}
+	}*/
 	void SwapTiles(GameObject* a, GameObject* b)
 	{
 		auto ca = GetClickable(a);
@@ -80,15 +92,14 @@ public:
 		int x2 = cb->gridX;
 		int y2 = cb->gridY;
 
-		// swap logique
+		// swap GRID ONLY
 		std::swap(grid[y1][x1], grid[y2][x2]);
-		std::swap(tiles[y1][x1], tiles[y2][x2]);
 
-		// swap coordonnées
+		// swap positions logiques
 		std::swap(ca->gridX, cb->gridX);
 		std::swap(ca->gridY, cb->gridY);
 
-		// swap positions visuelles
+		// swap visual
 		auto posA = a->GetPosition();
 		auto posB = b->GetPosition();
 
@@ -128,27 +139,86 @@ public:
 					return true;
 			}
 		}
-
+		UpdateVisuals();
 		return false;
+	}
+	void HandleMatch(int y, int x, int count, bool horizontal)
+	{
+		if (count < 3)
+			return;
+
+		// supprimer
+		for (int i = 0; i < count; i++)
+		{
+			if (horizontal)
+				grid[y][x + i] = -1;
+			else
+				grid[y + i][x] = -1;
+		}
+
+		// BONUS
+		if (count == 4)
+		{
+			// bonus ligne
+			if (horizontal)
+				grid[y][x] = 100;
+			else
+				grid[y][x] = 100;
+		}
+		else if (count >= 5)
+		{
+			// super bonus
+			if (horizontal)
+				grid[y][x] = 200;
+			else
+				grid[y][x] = 200;
+		}
+		UpdateVisuals();
 	}
 	void RemoveMatches()
 	{
+		// horizontal
 		for (int y = 0; y < HEIGHT; y++)
 		{
-			for (int x = 0; x < WIDTH - 2; x++)
-			{
-				int v = grid[y][x];
+			int count = 1;
 
-				if (v == grid[y][x + 1] && v == grid[y][x + 2])
+			for (int x = 1; x < WIDTH; x++)
+			{
+				if (grid[y][x] == grid[y][x - 1])
 				{
-					grid[y][x] = -1;
-					grid[y][x + 1] = -1;
-					grid[y][x + 2] = -1;
+					count++;
+				}
+				else
+				{
+					HandleMatch(y, x - count, count, true);
+					count = 1;
 				}
 			}
+
+			HandleMatch(y, WIDTH - count, count, true);
 		}
 
-		// vertical pareil (copie logique)
+		// vertical
+		for (int x = 0; x < WIDTH; x++)
+		{
+			int count = 1;
+
+			for (int y = 1; y < HEIGHT; y++)
+			{
+				if (grid[y][x] == grid[y - 1][x])
+				{
+					count++;
+				}
+				else
+				{
+					HandleMatch(y - count, x, count, false);
+					count = 1;
+				}
+			}
+
+			HandleMatch(HEIGHT - count, x, count, false);
+		}
+		UpdateVisuals();
 	}
 	void ApplyGravity()
 	{
@@ -160,11 +230,42 @@ public:
 				{
 					for (int k = y; k > 0; k--)
 					{
-						grid[k][x] = grid[k - 1][x];
+						std::swap(grid[k][x], grid[k - 1][x]);
 					}
 
 					grid[0][x] = rand() % 5;
 				}
+			}
+		}
+	}
+	void RebuildGridReferences()
+	{
+		for (int y = 0; y < HEIGHT; y++)
+		{
+			for (int x = 0; x < WIDTH; x++)
+			{
+				auto c = GetClickable(tiles[y][x]);
+				c->gridX = x;
+				c->gridY = y;
+			}
+		}
+	}
+	void ResolveBoard()
+	{
+		bool again = true;
+
+		while (again)
+		{
+			again = HasMatch();
+
+			if (again)
+			{
+				RemoveMatches();
+				ApplyGravity();
+
+				RebuildGridReferences(); // IMPORTANT FIX
+
+				UpdateVisuals();
 			}
 		}
 	}
@@ -179,7 +280,24 @@ public:
 			}
 		}
 	}
+	void ApplyBonus(int x, int y, int type)
+	{
+		if (type == 100)
+		{
+			// explosion ligne
+			for (int i = 0; i < WIDTH; i++)
+				grid[y][i] = -1;
+		}
+		else if (type == 200)
+		{
+			// explosion colonne + ligne (cross)
+			for (int i = 0; i < WIDTH; i++)
+				grid[y][i] = -1;
 
+			for (int i = 0; i < HEIGHT; i++)
+				grid[i][x] = -1;
+		}
+	}
 	void OnTileClicked(GameObject* tile)
 	{
 		auto renderer = tile->GetComponent<RectangleShapeRenderer>();
@@ -219,6 +337,7 @@ public:
 		}
 
 		firstSelected = nullptr;
+		UpdateVisuals();
 	}
 	GameObject* CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color)
 	{
