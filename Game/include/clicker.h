@@ -4,28 +4,27 @@
 #include <SFML/Window/Mouse.hpp>
 #include <functional>
 #include <iostream>
+
 class ClickableComponent : public Component
 {
+public:
+    std::function<void(int, int)> onClick; // passe col, row directement
+    int gridX = 0;
+    int gridY = 0;
+
 private:
     bool wasPressed = false;
 
 public:
-    std::function<void(GameObject*)> onClick;
-    int gridX;
-    int gridY;
-
-    void Update(float dt) override
+    void Update(float _dt) override
     {
-        auto windowModule = Engine::GetInstance()
-            ->GetModuleManager()
-            ->GetModule<WindowModule>();
-
-        sf::RenderWindow* window = windowModule->GetWindow();
+        sf::RenderWindow* window = Engine::GetInstance()
+            ->GetModuleManager()->GetModule<WindowModule>()->GetWindow();
 
         bool isPressed = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
         sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
 
-        auto pos = GetOwner()->GetPosition();
+        Maths::Vector2f pos = GetOwner()->GetPosition();
         float size = 40.f;
 
         bool inside =
@@ -34,8 +33,7 @@ public:
 
         if (isPressed && !wasPressed && inside)
         {
-            if (onClick)
-                onClick(GetOwner());
+            if (onClick) onClick(gridX, gridY);
         }
 
         wasPressed = isPressed;

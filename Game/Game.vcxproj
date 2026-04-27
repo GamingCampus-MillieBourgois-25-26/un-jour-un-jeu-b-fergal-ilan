@@ -103,6 +103,7 @@
     <ClInclude Include="include\Demo\Tile.h" />
     <ClInclude Include="include\Demo\TileCounter.h" />
     <ClInclude Include="include\Demo\TileSpawner.h" />
+    <ClInclude Include="Scenes\BoardResolver.h" />
     <ClInclude Include="Scenes\Demo\DemoScene.h" />
     <ClInclude Include="Scenes\matche 3.h" />
   </ItemGroup>
