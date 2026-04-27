@@ -1,8 +1,8 @@
 ﻿#pragma once
 #include "Core/Component.h"
 #include "InputModule.h"
-#include "Bullet.h"
-#include "Pattern.h"
+#include "BulletH/Bullet.h"
+#include "BulletH/Pattern.h"
 
 enum class SpawnSide
 {

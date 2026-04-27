@@ -93,7 +93,7 @@ public:
         renderer->SetSize({ 40.f, 40.f });
         renderer->SetColor(sf::Color::Red);
 
-        tower->CreateComponent<Tower>();
+        tower->CreateComponent<FTower>();
 
         CancelPreview();
     }

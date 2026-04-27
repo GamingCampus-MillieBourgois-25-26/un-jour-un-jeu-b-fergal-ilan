@@ -4,7 +4,7 @@
 #include "FPlayer.h"
 #include <cmath>
 #include <iostream>
-class Bullet : public Component
+class FBullet : public Component
 {
 public:
     GameObject* player = nullptr;

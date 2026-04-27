@@ -42,7 +42,7 @@ public:
             if (go->GetName().rfind("Enemy_", 0) != 0) continue;
             if (go->IsMarkedForDeletion()) continue;
 
-            EnemyMovement* em = go->GetComponent<EnemyMovement>();
+            EnemyMov* em = go->GetComponent<EnemyMov>();
             if (!em || em->IsDead()) continue;
 
             Maths::Vector2f ePos = go->GetPosition();
@@ -81,5 +81,5 @@ private:
     Maths::Vector2f direction;
     float speed;
     bool alive = true;
-    EnemyMovement* hitTarget = nullptr;
+    EnemyMov* hitTarget = nullptr;
 };

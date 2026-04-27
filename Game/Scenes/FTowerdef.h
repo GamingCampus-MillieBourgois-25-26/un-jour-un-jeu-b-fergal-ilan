@@ -27,7 +27,7 @@ public:
 		/*GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Cyan);
 		player->CreateComponent<FPlayer>();*/
 		GameObject* tower = CreateDummyGameObject("Tower", 300.f, sf::Color::Red);
-		tower->CreateComponent<Tower>();
+		tower->CreateComponent<FTower>();
 
 		
 

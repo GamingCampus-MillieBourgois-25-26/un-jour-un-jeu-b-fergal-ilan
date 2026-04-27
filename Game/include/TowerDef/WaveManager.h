@@ -10,10 +10,10 @@
 #include "TowerDef/Tenemy.h"
 #include <iostream>
 
-class WaveManager : public Component
+class WaveMan : public Component
 {
 public:
-    WaveManager(std::vector<Maths::Vector2f>* _path, float _waveCooldown = 10.f)
+    WaveMan(std::vector<Maths::Vector2f>* _path, float _waveCooldown = 10.f)
         : path(_path), waveCooldown(_waveCooldown) {
     }
 
@@ -98,7 +98,7 @@ private:
             r->SetSize({ 20.f, 20.f });
             r->SetColor(sf::Color::Red);
 
-            enemy->CreateComponent<EnemyMovement>(path, 3);
+            enemy->CreateComponent<EnemyMov>(path, 3);
 
             // Espacer les ennemis au depart
             enemy->SetPosition(OffsetStart(i));
@@ -113,7 +113,7 @@ private:
         for (const auto& go : scene->GetGameObjects())
         {
             if (go->GetName().rfind("Enemy_", 0) != 0) continue;
-            EnemyMovement* em = go->GetComponent<EnemyMovement>();
+            EnemyMov* em = go->GetComponent<EnemyMov>();
             if (em && !em->IsDead())
                 count++;
         }
@@ -121,4 +121,4 @@ private:
     }
 };
 
-inline int WaveManager::enemyId = 0;
+inline int WaveMan::enemyId = 0;

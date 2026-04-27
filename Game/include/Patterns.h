@@ -4,16 +4,16 @@
 #include "Bullet.h"
 #include "BulletPool.h"
 
-namespace Patterns
+namespace FPatterns
 {
-    inline void ShootCircle(GameObject* owner)
+    inline void FShootCircle(GameObject* owner)
     {
         for (int i = 0; i < 36; i++)
         {
             float angle = i * 10.f;
             float rad = angle * 3.14159f / 180.f;
 
-            Bullet* b = gBulletPool.GetBullet();
+            FBullet* b = gBulletPool.GetBullet();
             if (!b) return;
 
             b->Activate(
@@ -26,7 +26,7 @@ namespace Patterns
         }
     }
 
-    inline void ShootSpiral(GameObject* owner)
+    inline void FShootSpiral(GameObject* owner)
     {
         static float baseAngle = 0.f;
 
@@ -35,7 +35,7 @@ namespace Patterns
             float angle = baseAngle + i * 20.f;
             float rad = angle * 3.14159f / 180.f;
 
-            Bullet* b = gBulletPool.GetBullet();
+            FBullet* b = gBulletPool.GetBullet();
             if (!b) return;
 
             b->Activate(
@@ -50,7 +50,7 @@ namespace Patterns
         baseAngle += 5.f;
     }
 
-    inline void ShootWave(GameObject* owner)
+    inline void FShootWave(GameObject* owner)
     {
         static float t = 0.f;
 
@@ -61,7 +61,7 @@ namespace Patterns
             float angle = std::sin(t + i * 0.5f) * 45.f;
             float rad = angle * 3.14159f / 180.f;
 
-            Bullet* b = gBulletPool.GetBullet();
+            FBullet* b = gBulletPool.GetBullet();
             if (!b) return;
 
             b->Activate(
@@ -76,14 +76,14 @@ namespace Patterns
         t += 0.1f;
     }
 
-    inline void ShootLaser(GameObject* owner)
+    inline void FShootLaser(GameObject* owner)
     {
         float angle = 0.f;
         float rad = angle * 3.14159f / 180.f;
 
         for (int i = 0; i < 20; i++)
         {
-            Bullet* b = gBulletPool.GetBullet();
+            FBullet* b = gBulletPool.GetBullet();
             if (!b) return;
 
             Maths::Vector2f pos = owner->GetPosition() + Maths::Vector2f(
@@ -100,7 +100,7 @@ namespace Patterns
             );
         }
     }
-    inline void ShootRadialBurst(GameObject* owner, int bulletCount = 72)
+    inline void FShootRadialBurst(GameObject* owner, int bulletCount = 72)
     {
         float step = 360.f / bulletCount;
 
@@ -109,7 +109,7 @@ namespace Patterns
             float angle = i * step;
             float rad = angle * 3.14159f / 180.f;
 
-            Bullet* b = gBulletPool.GetBullet();
+            FBullet* b = gBulletPool.GetBullet();
             if (!b) return;
 
             Maths::Vector2f dir(
@@ -123,7 +123,7 @@ namespace Patterns
             );
         }
     }
-    inline void ShootRadialBurstSpiral(GameObject* owner)
+    inline void FShootRadialBurstSpiral(GameObject* owner)
     {
         static float offset = 0.f;
 
@@ -135,7 +135,7 @@ namespace Patterns
             float angle = i * step + offset;
             float rad = angle * 3.14159f / 180.f;
 
-            Bullet* b = gBulletPool.GetBullet();
+            FBullet* b = gBulletPool.GetBullet();
             if (!b) return;
 
             b->Activate(

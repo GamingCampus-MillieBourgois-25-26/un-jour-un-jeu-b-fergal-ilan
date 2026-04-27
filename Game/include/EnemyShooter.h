@@ -16,13 +16,13 @@ public:
         if (timer > 1.f + (phase * 0.2f))
         {
             if (phase == 0)
-                Patterns::ShootCircle(GetOwner());
+                FPatterns::FShootCircle(GetOwner());
             else if (phase == 1)
-                Patterns::ShootSpiral(GetOwner());
+                FPatterns::FShootSpiral(GetOwner());
             else if (phase == 2)
-                Patterns::ShootWave(GetOwner());
+                FPatterns::FShootWave(GetOwner());
             else
-                Patterns::ShootLaser(GetOwner());
+                FPatterns::FShootLaser(GetOwner());
 
             timer = 0.f;
             phase = (phase + 1) % 4;

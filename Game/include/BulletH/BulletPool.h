@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "Bullet.h"
+#include "BulletH/Bullet.h"
 #include "Core/GameObject.h"
 #include "Core/Scene.h"
 #include "Components/RectangleShapeRenderer.h"
@@ -43,4 +43,4 @@ public:
     }
 };
 
-extern BulletPool gBulletPool;
+extern BulletPool hBulletPool;

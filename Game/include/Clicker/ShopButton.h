@@ -61,7 +61,7 @@ public:
         // Prix = baseCost * costScale^purchaseCount
         float cost = static_cast<float>(baseCost);
         for (int i = 0; i < purchaseCount; i++)
-            cost *= costScale;
+            cost *= costScale * 0.8f;
         return static_cast<int>(cost);
     }
 

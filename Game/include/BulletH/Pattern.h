@@ -3,9 +3,9 @@
 #include <cmath>
 #include "Core/GameObject.h"
 #include "Core/Scene.h"
-#include "Bullet.h"
-#include "BulletPool.h"
-#include "Player.h"
+#include "BulletH/Bullet.h"
+#include "BulletH/BulletPool.h"
+#include "BulletH/Player.h"
 #include "Core/Component.h"
 
 namespace Patterns
@@ -46,7 +46,7 @@ namespace Patterns
         {
             float rad = baseAngle + i * (2.f * 3.14159f / count);
 
-            Bullet* b = gBulletPool.GetBullet();
+            Bullet* b = hBulletPool.GetBullet();
             if (!b) return;
 
             b->Activate(
@@ -69,7 +69,7 @@ namespace Patterns
         {
             float rad = baseAngle + i * (2.f * 3.14159f / count);
 
-            Bullet* b = gBulletPool.GetBullet();
+            Bullet* b = hBulletPool.GetBullet();
             if (!b) return;
 
             b->Activate(
@@ -97,7 +97,7 @@ namespace Patterns
         {
             float rad = baseAngle + (i - count / 2) * spread + spiralOffset;
 
-            Bullet* b = gBulletPool.GetBullet();
+            Bullet* b = hBulletPool.GetBullet();
             if (!b) return;
 
             b->Activate(
@@ -137,7 +137,7 @@ namespace Patterns
                 perpY * offsetDist
             );
 
-            Bullet* b = gBulletPool.GetBullet();
+            Bullet* b = hBulletPool.GetBullet();
             if (!b) return;
 
             b->Activate(
@@ -163,7 +163,7 @@ namespace Patterns
                 std::sin(rad) * i * 10.f
             );
 
-            Bullet* b = gBulletPool.GetBullet();
+            Bullet* b = hBulletPool.GetBullet();
             if (!b) return;
 
             b->Activate(
@@ -185,7 +185,7 @@ namespace Patterns
         {
             float rad = baseAngle + (i - count / 2) * spread;
 
-            Bullet* b = gBulletPool.GetBullet();
+            Bullet* b = hBulletPool.GetBullet();
             if (!b) return;
 
             b->Activate(
@@ -206,7 +206,7 @@ namespace Patterns
         {
             float rad = baseAngle + i * step;
 
-            Bullet* b = gBulletPool.GetBullet();
+            Bullet* b = hBulletPool.GetBullet();
             if (!b) return;
 
             b->Activate(
@@ -230,7 +230,7 @@ namespace Patterns
         {
             float rad = baseAngle + i * step;
 
-            Bullet* b = gBulletPool.GetBullet();
+            Bullet* b = hBulletPool.GetBullet();
             if (!b) return;
 
             b->Activate(

@@ -18,7 +18,7 @@ public:
         placer->CreateComponent<TowerPlacer>();
 
         GameObject* waveManagerGO = CreateGameObject("WaveManager");
-        waveManagerGO->CreateComponent<WaveManager>(&roadPath, 10.f);
+        waveManagerGO->CreateComponent<WaveMan>(&roadPath, 10.f);
     }
 
 private:

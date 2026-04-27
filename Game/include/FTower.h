@@ -6,10 +6,10 @@
 #include <vector>
 #include <cmath>
 class FTowerDef;
-class Tower : public Component
+class FTower : public Component
 {
 public:
-    Tower(float range = 150.f, float fireRate = 1.f)
+    FTower(float range = 150.f, float fireRate = 1.f)
         : m_range(range), m_fireRate(fireRate)
     {
     }

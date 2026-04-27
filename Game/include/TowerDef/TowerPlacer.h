@@ -6,8 +6,8 @@
 #include "Components/RectangleShapeRenderer.h"
 #include "Modules/InputModule.h"
 #include "Modules/SceneModule.h"
-#include "Map.h"
-#include "Tower.h"
+#include "TowerDef/Map.h"
+#include "TowerDef/Tower.h"
 #include <iostream>
 
 class TowerPlacer : public Component

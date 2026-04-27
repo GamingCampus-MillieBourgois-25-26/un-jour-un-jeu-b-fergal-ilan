@@ -132,7 +132,7 @@
     <ClInclude Include="include\wavemanager.h" />
     <ClInclude Include="Scenes\Fbuller_hell.h" />
     <ClInclude Include="include\Player.h" />
-    <ClInclude Include="Scenes\DefaultScene.h" />
+   
     <ClInclude Include="include\Demo\Player.h" />
     <ClInclude Include="include\Demo\Tile.h" />
     <ClInclude Include="include\Demo\TileCounter.h" />

@@ -12,7 +12,7 @@
 #include "Core/GameObject.h"
 #include "Core/Scene.h"
 #include "Modules/AssetsModule.h"
-class Bullet;
+class FBullet;
 class EnemyShooter;
 class FBHene final : public Scene
 {

@@ -1,3 +1,3 @@
-#include "BulletPool.h"
+#include "BulletH/BulletPool.h"
 
-BulletPool gBulletPool;
+BulletPool hBulletPool;

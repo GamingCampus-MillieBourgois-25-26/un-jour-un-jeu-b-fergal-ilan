@@ -1,7 +1,7 @@
 ﻿
 #pragma once
 #include "Core/Component.h"
-#include "Player.h"
+#include "BulletH/Player.h"
 #include "Core/Scene.h"      
 #include "Core/GameObject.h" 
 #include <cmath>

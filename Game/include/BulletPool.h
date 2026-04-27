@@ -6,10 +6,10 @@
 #include "Components/RectangleShapeRenderer.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/SquareCollider.h"
-class BulletPool
+class FBulletPool
 {
 public:
-    std::vector<Bullet*> bullets;
+    std::vector<FBullet*> bullets;
 
     void Init(Scene* scene, int count)
     {
@@ -17,7 +17,7 @@ public:
         {
             GameObject* obj = scene->CreateGameObject("Bullet");
 
-            auto b = obj->CreateComponent<Bullet>();
+            auto b = obj->CreateComponent<FBullet>();
 
             //AJOUT VISUEL (IMPORTANT)
             auto renderer = obj->CreateComponent<RectangleShapeRenderer>();
@@ -31,7 +31,7 @@ public:
         }
     }
 
-    Bullet* GetBullet()
+    FBullet* GetBullet()
     {
         for (auto b : bullets)
         {
@@ -43,4 +43,4 @@ public:
     }
 };
 
-extern BulletPool gBulletPool;
+extern FBulletPool gBulletPool;

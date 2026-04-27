@@ -6,10 +6,10 @@
 #include "Core/GameObject.h"
 #include "Components/RectangleShapeRenderer.h"
 
-class EnemyMovement : public Component
+class EnemyMov : public Component
 {
 public:
-    EnemyMovement(std::vector<Maths::Vector2f>* _path, int _hp = 3)
+    EnemyMov(std::vector<Maths::Vector2f>* _path, int _hp = 3)
         : path(_path), hp(_hp), maxHp(_hp) {
     }
 

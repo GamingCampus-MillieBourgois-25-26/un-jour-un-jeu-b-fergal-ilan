@@ -20,7 +20,7 @@ class BulletHScene final : public Scene
 public:
 	BulletHScene() : Scene("BulletHScene")
 	{
-		gBulletPool.Init(this, 1000);
+		hBulletPool.Init(this, 1000);
 		GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Red);
 		player->CreateComponent<Player>();
 

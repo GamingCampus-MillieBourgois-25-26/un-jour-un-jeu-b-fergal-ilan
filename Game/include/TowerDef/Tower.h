@@ -7,7 +7,7 @@
 #include "Core/Scene.h"
 #include "Components/RectangleShapeRenderer.h"
 #include "Modules/SceneModule.h"
-#include "TowerBullet.h"
+#include "TowerDef/TowerBullet.h"
 
 struct BulletSpawnRequest
 {
