@@ -13,7 +13,7 @@ int main(const int _argc, const char** _argv)
 
     engine->Init(_argc, _argv);
 
-    engine->GetModuleManager()->GetModule<SceneModule>()->SetScene<ClickerScene>(); ///FTowerDef ,  FBHene , FClick , TowerDefScene , BulletHScene , ClickerScene
+    engine->GetModuleManager()->GetModule<SceneModule>()->SetScene<TowerDefScene>(); ///FTowerDef ,  FBHene , FClick , TowerDefScene , BulletHScene , ClickerScene
 
     engine->Run();
 

@@ -2,7 +2,7 @@
 
 #include "Core/Component.h"
 #include "Core/GameObject.h"
-#include "FProjectile.h"
+#include "Fergal/FProjectile.h"
 #include <vector>
 #include <cmath>
 class FTowerDef;

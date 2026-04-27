@@ -1,5 +1,5 @@
 #pragma once
-#include "FPlayer.h"
+#include "Fergal/FPlayer.h"
 #include "Assets/Texture.h"
 #include "Components/RectangleShapeRenderer.h"
 #include "Components/SpriteRenderer.h"
@@ -10,10 +10,10 @@
 #include "Core/Scene.h"
 #include "Modules/AssetsModule.h"
 #include <SFML/Graphics.hpp>
-#include "FClickableComponent.h"
-#include "ShopComponent.h"
-#include "FScoreDisplayComponent.h"
-#include "FCostDisplayComponent.h"
+#include "Fergal/FClickableComponent.h"
+#include "Fergal/ShopComponent.h"
+#include "Fergal/FScoreDisplayComponent.h"
+#include "Fergal/FCostDisplayComponent.h"
 
 class FClick final : public Scene
 {

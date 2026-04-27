@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FPlayer.h"
+#include "Fergal/FPlayer.h"
 #include "Assets/Texture.h"
 #include "Components/RectangleShapeRenderer.h"
 #include "Components/SpriteRenderer.h"
@@ -9,11 +9,11 @@
 #include "Core/GameObject.h"
 #include "Core/Scene.h"
 #include "Modules/AssetsModule.h"
-#include "FEnemyMovement.h"
-#include "FTower.h"
-#include "EnemyWave.h"
-#include "wavemanager.h"
-#include "TowerPlacement.h"
+#include "Fergal/FEnemyMovement.h"
+#include "Fergal/FTower.h"
+#include "Fergal/EnemyWave.h"
+#include "Fergal/wavemanager.h"
+#include "Fergal/TowerPlacement.h"
 #include <iostream>
 #include <algorithm>
 

@@ -1,8 +1,8 @@
 #pragma once
 #pragma once
 #include "Core/Component.h"
-#include "EnemyWave.h"
-#include "FEnemyMovement.h"
+#include "Fergal/EnemyWave.h"
+#include "Fergal/FEnemyMovement.h"
 #include <vector>
 #include <algorithm>
 #include <iostream>

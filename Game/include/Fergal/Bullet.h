@@ -1,7 +1,7 @@
 #pragma once
 #include "Core/Component.h"
 #include "Core/Scene.h"
-#include "FPlayer.h"
+#include "Fergal/FPlayer.h"
 #include <cmath>
 #include <iostream>
 class FBullet : public Component

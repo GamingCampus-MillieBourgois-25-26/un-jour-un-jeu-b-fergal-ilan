@@ -1,8 +1,8 @@
 #pragma once
 #include <cmath>
 #include "Core/GameObject.h"
-#include "Bullet.h"
-#include "BulletPool.h"
+#include "Fergal/Bullet.h"
+#include "Fergal/BulletPool.h"
 
 namespace FPatterns
 {

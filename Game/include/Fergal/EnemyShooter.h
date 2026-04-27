@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Core/Component.h"
-#include "Bullet.h"
-#include "Patterns.h"
+#include "Fergal/Bullet.h"
+#include "Fergal/Patterns.h"
 class EnemyShooter : public Component
 {
 public:

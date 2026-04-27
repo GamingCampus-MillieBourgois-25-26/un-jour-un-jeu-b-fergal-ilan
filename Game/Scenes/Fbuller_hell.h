@@ -1,9 +1,9 @@
 #pragma once
 
-#include "FPlayer.h"
-#include "Bullet.h"
-#include "EnemyShooter.h"
-#include "BulletPool.h"
+#include "Fergal/FPlayer.h"
+#include "Fergal/Bullet.h"
+#include "Fergal/EnemyShooter.h"
+#include "Fergal/BulletPool.h"
 #include "Assets/Texture.h"
 #include "Components/RectangleShapeRenderer.h"
 #include "Components/SpriteRenderer.h"

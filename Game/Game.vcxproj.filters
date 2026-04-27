@@ -39,7 +39,7 @@
     <ClCompile Include="include\Demo\Tile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="include\BulletPool.cpp">
+    <ClCompile Include="include\Fergal\BulletPool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="include\Demo\TileSpawner.cpp">
@@ -101,13 +101,13 @@
     <ClInclude Include="Scenes\Fbuller_hell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Bullet.h">
+    <ClInclude Include="include\Fergal\Bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\EnemyShooter.h">
+    <ClInclude Include="include\Fergal\EnemyShooter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Patterns.h">
+    <ClInclude Include="include\Fergal\Patterns.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Demo\Player.h">
@@ -116,55 +116,58 @@
     <ClInclude Include="Scenes\Demo\DemoScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\FPlayer.h">
+    <ClInclude Include="include\Fergal\FPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Demo\Tile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\BulletPool.h">
+    <ClInclude Include="include\Fergal\BulletPool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\FTowerdef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\FEnemyMovement.h">
+    <ClInclude Include="include\Fergal\FEnemyMovement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\FTower.h">
+    <ClInclude Include="include\Fergal\FTower.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\FProjectile.h">
+    <ClInclude Include="include\Fergal\FProjectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\EnemyWave.h">
+    <ClInclude Include="include\Fergal\EnemyWave.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Demo\TileSpawner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\TowerPlacement.h">
+    <ClInclude Include="include\Fergal\TowerPlacement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\wavemanager.h">
+    <ClInclude Include="include\Fergal\wavemanager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\FClicker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\FClickableComponent.h">
+    <ClInclude Include="include\Fergal\FClickableComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ShopComponent.h">
+    <ClInclude Include="include\Fergal\ShopComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Demo\TileCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\FScoreDisplayComponent.h">
+    <ClInclude Include="include\Fergal\FScoreDisplayComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\FCostDisplayComponent.h">
+    <ClInclude Include="include\Fergal\FCostDisplayComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
