@@ -12,7 +12,6 @@ class ClickerButton : public Component
 public:
     void Update(float _dt) override
     {
-        // Auto : accumule des fractions de point, independant du pointsPerClick
         if (gGameState.autoClickRate > 0.f)
         {
             gGameState.autoAccumulator += gGameState.autoClickRate * _dt;
@@ -27,7 +26,6 @@ public:
             }
         }
 
-        // Clic manuel
         if (!InputModule::GetMouseButtonDown(sf::Mouse::Button::Left))
             return;
 

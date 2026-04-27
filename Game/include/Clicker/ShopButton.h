@@ -1,4 +1,3 @@
-// Clicker/ShopButton.h
 #pragma once
 #include "Core/Component.h"
 #include "Components/RectangleShapeRenderer.h"
@@ -11,10 +10,6 @@
 class ShopButton : public Component
 {
 public:
-    // _baseCost   : prix de base
-    // _costScale  : multiplicateur par achat (ex: 1.5 = +50% a chaque fois)
-    // _label      : nom affiche dans la console
-    // _onBuy      : lambda applique l'effet du boost
     ShopButton(int _baseCost, float _costScale,
         const std::string& _label,
         std::function<void()> _onBuy)
@@ -29,7 +24,6 @@ public:
 
     void Update(float _dt) override
     {
-        // Mise a jour couleur selon affordabilite
         UpdateColor();
 
         if (!InputModule::GetMouseButtonDown(sf::Mouse::Button::Left))
