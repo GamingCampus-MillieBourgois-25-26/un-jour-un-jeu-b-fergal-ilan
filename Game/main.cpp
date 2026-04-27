@@ -1,5 +1,9 @@
 #include "Engine.h"
 #include "SceneModule.h"
+#include "Scenes/TowerDef.h"
+#include "Scenes/BulletHScene.h"
+#include "Scenes/ClickerScene.h"
+
 #include "Scenes/Fbuller_hell.h"
 #include "Scenes/FTowerdef.h"
 #include "Scenes/FClicker.h"
