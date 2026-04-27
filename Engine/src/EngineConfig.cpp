@@ -1,7 +1,6 @@
 ﻿#include "EngineConfig.h"
 
-const std::filesystem::path EngineConfig::TempDirectoryPath = std::filesystem::temp_directory_path() /
-    "SFML Discovery Engine";
+const std::filesystem::path EngineConfig::TempDirectoryPath = std::filesystem::temp_directory_path() / "SFML Discovery Engine";
 
 bool EngineConfig::ArgExists(const std::string& _arg) const
 {
@@ -14,6 +13,22 @@ std::string EngineConfig::GetArg(const std::string& _arg) const
         return it->second;
 
     return "";
+}
+
+bool EngineConfig::IsDebugMode() const
+{
+    return isDebugMode;
+}
+
+void EngineConfig::SetDebugMode(const bool _debug_mode)
+{
+    isDebugMode = _debug_mode;
+}
+
+bool EngineConfig::ToggleDebugMode()
+{
+    isDebugMode = !isDebugMode;
+    return isDebugMode;
 }
 
 void EngineConfig::ParseCommandLineArguments(const int _argc, const char** _argv)

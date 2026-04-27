@@ -1,7 +1,7 @@
 #include "Modules/ImGuiModule.h"
 
-#include <imgui-SFML.h>
-#include <imgui.h>
+#include <ImGui/imgui.h>
+#include <ImGui-SFML/imgui-SFML.h>
 
 #include <SFML/Window/Event.hpp>
 
@@ -9,7 +9,14 @@
 #include "ModuleManager.h"
 
 #include "Modules/InputModule.h"
+#include "Modules/SceneModule.h"
+#include "Modules/TimeModule.h"
 #include "Modules/WindowModule.h"
+
+void ImGuiModule::Awake()
+{
+    Module::Awake();
+}
 
 void ImGuiModule::Start()
 {
@@ -43,12 +50,7 @@ void ImGuiModule::Update()
 
     if (InputModule::GetKeyDown(sf::Keyboard::Key::F1))
     {
-        displayDebugWindow = !displayDebugWindow;
-    }
-
-    if (displayDebugWindow)
-    {
-        DisplayDebugWindow();
+        Engine::GetInstance()->GetConfig().ToggleDebugMode();
     }
 }
 
@@ -66,6 +68,16 @@ void ImGuiModule::Finalize()
     ImGui::SaveIniSettingsToDisk(iniPath.string().c_str());
 
     ImGui::SFML::Shutdown();
+}
+
+void ImGuiModule::OnDebug()
+{
+    Module::OnDebug();
+
+    if (!Engine::GetInstance()->GetConfig().IsDebugMode())
+        return;
+
+    DisplayDebugWindow();
 }
 
 void ImGuiModule::DisplayDebugWindow()
